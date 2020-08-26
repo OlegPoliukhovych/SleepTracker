@@ -32,6 +32,25 @@ final class SessionSetup: ObservableObject {
             .assign(to: \.isReadyToStart, on: self)
             .store(in: &cancellables)
     }
+
+    func prepareSession() -> SleepSession? {
+
+        var steps = [SessionStep]()
+        if relaxing.enabled {
+            steps.append(SessionStepModel(kind: .relaxingSound))
+        }
+        if noiseTracking.enabled {
+            steps.append(SessionStepModel(kind: .noiseRecording))
+        }
+        if alarm.enabled {
+            steps.append(SessionStepModel(kind: .alarm))
+        }
+        guard !steps.isEmpty,
+            let session = try? SleepSession(steps: steps) else {
+            return nil
+        }
+        return session
+    }
 }
 
 enum Kind: String, CustomStringConvertible {

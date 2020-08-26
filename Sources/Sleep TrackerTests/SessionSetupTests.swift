@@ -73,4 +73,12 @@ final class SessionSetupTests: XCTestCase {
         session.alarm.enabled = true
         XCTAssertEqual(session.isReadyToStart, true, "session should be able to start if all options are enabled")
     }
+
+    func testSessionCreation() throws {
+        session.relaxing.enabled = true
+        session.noiseTracking.enabled = true
+        session.alarm.enabled = true
+        let sleepSession = session.prepareSession()
+        XCTAssertNotNil(sleepSession, "Sleep session should be created if options are set to 'enabled'")
+    }
 }

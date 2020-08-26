@@ -31,61 +31,86 @@ struct CheckButtonStyle: ButtonStyle {
 struct ContentView: View {
 
     @ObservedObject private var model = SessionSetup()
-
-    @State private var relaxingSoundExtended = false
-    @State private var alarmExtended = false
+    @State private var isSessionRunning = false
 
     var body: some View {
         ZStack {
-            VStack {
-                Spacer()
+            view()
+        }
+        .background(Color.mainBackground.edgesIgnoringSafeArea(.all))
+    }
 
-                VStack(spacing: 16) {
+    private func view() -> some View {
+        if isSessionRunning, let session = model.prepareSession() {
+            return AnyView (
+                SleepSessionContainer(isRunning: $isSessionRunning, model: session)
+                    .transition(.opacity)
+            )
+        } else {
+            return AnyView (
+                SessionSetupView(model: model, isSessionRunning: $isSessionRunning)
+            )
+        }
+    }
+}
 
-                    ContainerView {
-                        VStack {
-                            SettingOptionSelectableView(model: model.relaxing,
-                                                        selected: $relaxingSoundExtended)
-                            if relaxingSoundExtended {
-                                OptionSelectionView(model: model.relaxing,
-                                                      selected: $relaxingSoundExtended)
-                            }
+struct SessionSetupView: View {
+
+    @ObservedObject var model = SessionSetup()
+
+    @State private var relaxingSoundExtended = false
+    @State private var alarmExtended = false
+    @Binding var isSessionRunning: Bool
+
+    var body: some View {
+        VStack {
+            Spacer()
+
+            VStack(spacing: 16) {
+
+                ContainerView {
+                    VStack {
+                        SettingOptionSelectableView(model: model.relaxing,
+                                                    selected: $relaxingSoundExtended)
+                        if relaxingSoundExtended {
+                            OptionSelectionView(model: model.relaxing,
+                                                  selected: $relaxingSoundExtended)
                         }
                     }
-
-                    ContainerView {
-                        SettingView(model: model.noiseTracking)
-                    }
-
-                    ContainerView {
-                        VStack {
-                            SettingOptionSelectableView(model: model.alarm, selected: $alarmExtended)
-                            if alarmExtended {
-                                DatePicker("", selection: $model.alarm.value, displayedComponents: .hourAndMinute).colorInvert()
-                            }
-                        }
-                    }
-
-                    Button(action: {
-                        // Start sleeping session
-                    }) {
-                        HStack {
-                            Spacer()
-                            Text("Start")
-                            Spacer()
-                        }
-                    }
-                    .disabled(!model.isReadyToStart)
-                    .buttonStyle(CheckButtonStyle(disabled: !model.isReadyToStart))
-                    .padding(.top, 32)
                 }
-                .padding()
 
-                Spacer()
+                ContainerView {
+                    SettingView(model: model.noiseTracking)
+                }
+
+                ContainerView {
+                    VStack {
+                        SettingOptionSelectableView(model: model.alarm, selected: $alarmExtended)
+                        if alarmExtended {
+                            DatePicker("", selection: $model.alarm.value, displayedComponents: .hourAndMinute).colorInvert()
+                        }
+                    }
+                }
+
+                Button(action: {
+                    withAnimation {
+                        self.isSessionRunning = true
+                    }
+                }) {
+                    HStack {
+                        Spacer()
+                        Text("Start")
+                        Spacer()
+                    }
+                }
+                .disabled(!model.isReadyToStart)
+                .buttonStyle(CheckButtonStyle(disabled: !model.isReadyToStart))
+                .padding(.top, 32)
             }
+            .padding()
+            Spacer()
         }
         .animation(Animation.spring(), value: relaxingSoundExtended || alarmExtended)
-        .background(Color.mainBackground.edgesIgnoringSafeArea(.all))
     }
 }
 
