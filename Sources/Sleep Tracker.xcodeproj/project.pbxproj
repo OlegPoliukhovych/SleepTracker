@@ -14,7 +14,9 @@
 		858FBA7124CCB43A00B38B65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 858FBA7024CCB43A00B38B65 /* Assets.xcassets */; };
 		858FBA7424CCB43A00B38B65 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 858FBA7324CCB43A00B38B65 /* Preview Assets.xcassets */; };
 		858FBA7724CCB43A00B38B65 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 858FBA7524CCB43A00B38B65 /* LaunchScreen.storyboard */; };
+		859AE6E324FBCAA60083D248 /* RelaxingSoundStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859AE6E224FBCAA60083D248 /* RelaxingSoundStep.swift */; };
 		85B1309224F68A64003A4C8E /* SleepSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B1309124F68A64003A4C8E /* SleepSessionTests.swift */; };
+		85B1309624F6B94D003A4C8E /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B1309524F6B94D003A4C8E /* PlayerView.swift */; };
 		85C9EE5524D74E1B0090C222 /* Color+Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C9EE5424D74E1B0090C222 /* Color+Palette.swift */; };
 		85C9EE5924D817D30090C222 /* SessionSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C9EE5824D817D30090C222 /* SessionSetup.swift */; };
 		85F50A5C24EF1D7E0032EEF0 /* SessionSetupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F50A5B24EF1D7E0032EEF0 /* SessionSetupTests.swift */; };
@@ -43,7 +45,9 @@
 		858FBA7824CCB43A00B38B65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		858FBA7D24CCB43A00B38B65 /* Sleep TrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Sleep TrackerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		858FBA8324CCB43A00B38B65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		859AE6E224FBCAA60083D248 /* RelaxingSoundStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelaxingSoundStep.swift; sourceTree = "<group>"; };
 		85B1309124F68A64003A4C8E /* SleepSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepSessionTests.swift; sourceTree = "<group>"; };
+		85B1309524F6B94D003A4C8E /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		85C9EE5424D74E1B0090C222 /* Color+Palette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Palette.swift"; sourceTree = "<group>"; };
 		85C9EE5824D817D30090C222 /* SessionSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionSetup.swift; sourceTree = "<group>"; };
 		85F50A5B24EF1D7E0032EEF0 /* SessionSetupTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionSetupTests.swift; sourceTree = "<group>"; };
@@ -120,11 +124,21 @@
 			path = "Sleep TrackerTests";
 			sourceTree = "<group>";
 		};
+		859AE6E124FBCA850083D248 /* SleepSession */ = {
+			isa = PBXGroup;
+			children = (
+				85344AA624F3C553001DE99A /* SleepSession.swift */,
+				859AE6E224FBCAA60083D248 /* RelaxingSoundStep.swift */,
+			);
+			path = SleepSession;
+			sourceTree = "<group>";
+		};
 		85C9EE5624D815C20090C222 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				858FBA6E24CCB43800B38B65 /* ContentView.swift */,
 				85F50A5D24F1C4880032EEF0 /* SleepSessionContainer.swift */,
+				85B1309524F6B94D003A4C8E /* PlayerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -133,7 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				85C9EE5824D817D30090C222 /* SessionSetup.swift */,
-				85344AA624F3C553001DE99A /* SleepSession.swift */,
+				859AE6E124FBCA850083D248 /* SleepSession */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -242,6 +256,8 @@
 				85F50A5E24F1C4880032EEF0 /* SleepSessionContainer.swift in Sources */,
 				858FBA6B24CCB43800B38B65 /* AppDelegate.swift in Sources */,
 				858FBA6D24CCB43800B38B65 /* SceneDelegate.swift in Sources */,
+				859AE6E324FBCAA60083D248 /* RelaxingSoundStep.swift in Sources */,
+				85B1309624F6B94D003A4C8E /* PlayerView.swift in Sources */,
 				85C9EE5924D817D30090C222 /* SessionSetup.swift in Sources */,
 				85344AA724F3C553001DE99A /* SleepSession.swift in Sources */,
 				858FBA6F24CCB43800B38B65 /* ContentView.swift in Sources */,

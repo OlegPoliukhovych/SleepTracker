@@ -9,6 +9,12 @@
 import Foundation
 import Combine
 
+protocol SessionStep {
+    var kind: Kind { get }
+    var skip: AnyPublisher<Void, Never> { get }
+    func skipStep()
+}
+
 final class SleepSession: ObservableObject {
 
     @Published private(set) var currentStep: SessionStep
@@ -41,12 +47,6 @@ final class SleepSession: ObservableObject {
 
 }
 
-protocol SessionStep {
-    var kind: Kind { get }
-    var skip: AnyPublisher<Void, Never> { get }
-    func next()
-}
-
 struct SessionStepModel: SessionStep {
     let kind: Kind
     var skip: AnyPublisher<Void, Never> {
@@ -61,7 +61,7 @@ struct SessionStepModel: SessionStep {
         self.kind = kind
     }
 
-    func next() {
+    func skipStep() {
         skipSubject.send()
     }
 }

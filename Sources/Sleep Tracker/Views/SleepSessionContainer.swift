@@ -28,7 +28,12 @@ struct SleepSessionContainer: View {
                 .padding()
             }
             Spacer()
-            view(model: model.currentStep)
+            GeometryReader { geometry in
+                VStack {
+                    self.view(model: self.model.currentStep)
+                        .frame(height: geometry.size.height * 0.75)
+                }
+            }
             Spacer()
         }
         .padding()
@@ -38,10 +43,12 @@ struct SleepSessionContainer: View {
     func view(model: SessionStep) -> some View {
 
         // TODO: Provide actual view for each step
-        switch model.kind {
-        case .relaxingSound,
-             .noiseRecording,
-             .alarm:
+        switch model {
+        case let relaxingSoundStep as RelaxingSoundStep:
+            return AnyView (
+                PlayerView(model: relaxingSoundStep)
+            )
+        default:
             return AnyView(
                 VStack {
                     Text(model.kind.description)
@@ -49,7 +56,7 @@ struct SleepSessionContainer: View {
                         .padding(.bottom, 16)
                     Button(action: {
                         withAnimation {
-                            model.next()
+                            model.skipStep()
                         }
                     },
                            label: {
