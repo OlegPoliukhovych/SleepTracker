@@ -37,7 +37,7 @@ final class SessionSetup: ObservableObject {
 
         var steps = [SessionStep]()
         if relaxing.enabled {
-            steps.append(SessionStepModel(kind: .relaxingSound))
+            steps.append(RelaxingSoundStep(kind: .relaxingSound, duration: relaxing.value))
         }
         if noiseTracking.enabled {
             steps.append(SessionStepModel(kind: .noiseRecording))
