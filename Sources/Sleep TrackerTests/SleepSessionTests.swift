@@ -37,15 +37,15 @@ final class SleepSessionTests: XCTestCase {
 
     func testCurrentStepChange() throws {
         let currentStep = session.currentStep
-        currentStep.next()
+        currentStep.skipStep()
         let newStep = session.currentStep
         XCTAssertNotEqual(currentStep.kind, newStep.kind, "Steps should be different")
     }
 
     func testSessionExitWhenStepsReachedOut() throws {
-        session.currentStep.next() // Relaxing Sound to noiseRecording
-        session.currentStep.next() // Noise Recording to Alarm
-        session.currentStep.next() // Alarm not changed because it is last step so session should be terrminated
+        session.currentStep.skipStep() // Relaxing Sound to noiseRecording
+        session.currentStep.skipStep() // Noise Recording to Alarm
+        session.currentStep.skipStep() // Alarm not changed because it is last step so session should be terrminated
         XCTAssert(!session.isRunning, "Session should be ended when alarm step calls 'next'")
     }
 
