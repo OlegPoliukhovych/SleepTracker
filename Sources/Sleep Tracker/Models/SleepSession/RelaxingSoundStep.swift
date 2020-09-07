@@ -22,6 +22,7 @@ final class RelaxingSoundStep: SessionStep, PlayerViewDisplayable {
 
     @Published var isRunning: Bool = true
     @Published private(set) var timeLeft: String = ""
+    private let audioItem: AudioItem?
 
     private var timer: Cancellable?
     private var durationSubject: CurrentValueSubject<TimeInterval, Never>
@@ -39,10 +40,29 @@ final class RelaxingSoundStep: SessionStep, PlayerViewDisplayable {
     init(kind: Kind, duration: TimeInterval) {
         self.kind = kind
         durationSubject = .init(duration)
-        
+
+        if let path = Bundle.main.path(forResource: "nature.m4a", ofType: nil) {
+            let url = URL(fileURLWithPath: path)
+            audioItem = AudioItem(mode: .playback(fileUrl: url, startTime: nil))
+        } else {
+            audioItem = nil
+        }
+
+        audioItem?.statePublisher
+            .sink { [unowned self] state in
+                switch state {
+                case .running:
+                    self.setupTimer()
+                case .paused, .stopped:
+                    self.terminateTimer()
+                }
+            }
+            .store(in: &cancellables)
+
+
         durationSubject
-            .compactMap { [weak self] in self?.formatter.string(from: $0) }
-            .sink(receiveValue: { [weak self] s in self?.timeLeft = s })
+            .compactMap { [unowned self] in self.formatter.string(from: $0) }
+            .sink(receiveValue: { [unowned self] s in self.timeLeft = s })
             .store(in: &cancellables)
 
         durationSubject
@@ -55,9 +75,15 @@ final class RelaxingSoundStep: SessionStep, PlayerViewDisplayable {
 
         $isRunning
             .sink { [unowned self] isRunning in
-                isRunning ? self.setupTimer() : self.terminateTimer()
+                self.audioItem?.change(state: isRunning ? .running : .paused)
             }
             .store(in: &cancellables)
+
+        skipSubject
+            .sink { [unowned self] _ in
+                self.audioItem?.change(state: .stopped)
+            }
+        .store(in: &cancellables)
     }
 
     private func setupTimer() {

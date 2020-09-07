@@ -21,13 +21,6 @@ struct PlayerView<T: PlayerViewDisplayable>: View {
 
     var body: some View {
         VStack {
-            HStack {
-                Spacer()
-                Button(action: model.skipStep) {
-                    Text("Skip")
-                }
-            }
-            .padding()
             Spacer()
             Text(model.timeLeft)
                 .padding()
@@ -40,7 +33,11 @@ struct PlayerView<T: PlayerViewDisplayable>: View {
                         .font(.system(size: 30))
                 }
             }
-            .padding()
+            Divider()
+                .padding()
+            Button(action: model.skipStep) {
+                Text("Skip")
+            }
         }
     }
 }
