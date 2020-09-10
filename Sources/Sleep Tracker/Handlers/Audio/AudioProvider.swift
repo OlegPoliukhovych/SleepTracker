@@ -12,20 +12,19 @@ import Combine
 
 final class AudioProvider {
 
-    private let audioSession: AudioSession?
     private var accentAudioItem: AudioItem?
 
     private var cancellables = Set<AnyCancellable>()
 
     init?(audioItems: [AudioItem]) throws {
         do {
-            audioSession = try AudioSession(audioItems: audioItems)
-            configure(audioItems: audioItems)
+            try AVAudioSession.sharedInstance().setup(audioItems: audioItems)
         } catch  {
             throw error
         }
+        configure(audioItems: audioItems)
 
-        audioSession?.interruptionPublisher
+        AVAudioSession.sharedInstance().interruptionPublisher
             .sink { [unowned self] interruptionType in
                 switch interruptionType {
                 case .began:

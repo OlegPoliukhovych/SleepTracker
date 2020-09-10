@@ -10,22 +10,14 @@ import UIKit
 import AVFoundation
 import Combine
 
-final class AudioSession {
+extension AVAudioSession {
 
     enum Interruption {
         case began
         case ended(shouldResume: Bool)
     }
 
-    var interruptionPublisher: AnyPublisher<Interruption, Never> {
-        interruptionSubject.eraseToAnyPublisher()
-    }
-
-    private let interruptionSubject = PassthroughSubject<Interruption, Never>()
-
-    private var cancellables = Set<AnyCancellable>()
-
-    init?(audioItems: [AudioItem]) throws {
+    func setup(audioItems: [AudioItem]) throws {
         let category: AVAudioSession.Category = audioItems.contains(where: { item in
             if case AudioItem.Mode.record(destination: _) = item.mode {
                 return true
@@ -33,46 +25,44 @@ final class AudioSession {
             return false
         }) ? .playAndRecord : .playback
 
-        let session = AVAudioSession.sharedInstance()
         do {
-            try session.setCategory(category)
-            try session.setActive(true, options: [])
+            try setCategory(category, mode: .default)
+            try setActive(true)
         } catch {
             throw error
         }
 
-        if category == .playAndRecord, session.recordPermission == .undetermined {
-            session.requestRecordPermission { _ in
+        if category == .playAndRecord, recordPermission == .undetermined {
+            requestRecordPermission { _ in
                 // TODO: handle recording permission request result
             }
 
         }
-        subscribeToInterruptions()
+
         UIApplication.shared.beginReceivingRemoteControlEvents()
     }
 
-    private func subscribeToInterruptions() {
+    var interruptionPublisher: AnyPublisher<Interruption, Never> {
         NotificationCenter.default
             .publisher(for: AVAudioSession.interruptionNotification)
-            .sink { [weak self] notification in
+            .compactMap({ notification -> AVAudioSession.Interruption? in
                 guard let userInfo = notification.userInfo,
                     let typeValue = userInfo[AVAudioSessionInterruptionTypeKey] as? UInt,
                     let type = AVAudioSession.InterruptionType(rawValue: typeValue) else {
-                        return
+                        return nil
                 }
 
                 switch type {
                 case .began:
-                    self?.interruptionSubject.send(.began)
+                    return .began
                 case .ended:
-                    guard let optionsValue = userInfo[AVAudioSessionInterruptionOptionKey] as? UInt else { return }
+                    guard let optionsValue = userInfo[AVAudioSessionInterruptionOptionKey] as? UInt else { return nil }
                     let options = AVAudioSession.InterruptionOptions(rawValue: optionsValue)
-                    self?.interruptionSubject.send(.ended(shouldResume: options.contains(.shouldResume)))
-                default:
-                    break
+                    return .ended(shouldResume: options.contains(.shouldResume))
+                @unknown default:
+                    return nil
                 }
-        }
-        .store(in: &cancellables)
-
+            })
+            .eraseToAnyPublisher()
     }
 }
