@@ -18,7 +18,7 @@ protocol SessionStep {
 
 final class SleepSession: ObservableObject {
 
-    private let audioProvider: AudioProvider
+    private let audioProvider: AudioProvider?
     @Published private(set) var currentStep: SessionStep
     @Published private(set) var isRunning: Bool = true
 
@@ -33,7 +33,7 @@ final class SleepSession: ObservableObject {
             return nil
         }
 
-        audioProvider = AudioProvider(audioItems: steps.compactMap { $0.audioItem })
+        audioProvider = try? AudioProvider(audioItems: steps.compactMap { $0.audioItem })
 
         currentStep = first
 
@@ -52,7 +52,7 @@ final class SleepSession: ObservableObject {
         $currentStep
             .compactMap { $0.audioItem }
             .sink { [unowned self] audioItem in
-                self.audioProvider.setAccent(audioItem: audioItem)
+                self.audioProvider?.setAccent(audioItem: audioItem)
             }
             .store(in: &cancellables)
     }

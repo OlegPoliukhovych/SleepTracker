@@ -12,12 +12,29 @@ import Combine
 
 final class AudioProvider {
 
+    private let audioSession: AudioSession?
     private var accentAudioItem: AudioItem?
 
     private var cancellables = Set<AnyCancellable>()
 
-    init(audioItems: [AudioItem]) {
-        configure(audioItems: audioItems)
+    init?(audioItems: [AudioItem]) throws {
+        do {
+            audioSession = try AudioSession(audioItems: audioItems)
+            configure(audioItems: audioItems)
+        } catch  {
+            throw error
+        }
+
+        audioSession?.interruptionPublisher
+            .sink { [unowned self] interruptionType in
+                switch interruptionType {
+                case .began:
+                    self.accentAudioItem?.change(state: .paused)
+                case .ended(shouldResume: let shouldResume):
+                    self.accentAudioItem?.change(state: shouldResume ? .running : .stopped)
+                }
+            }
+            .store(in: &cancellables)
     }
 
     private func configure(audioItems: [AudioItem]) {

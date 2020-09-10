@@ -20,7 +20,7 @@ final class RelaxingSoundStep: SessionStep, PlayerViewDisplayable {
 
     private let skipSubject = PassthroughSubject<Void, Never>()
 
-    @Published var isRunning: Bool = true
+    @Published private(set) var isRunning: Bool = true
     @Published private(set) var timeLeft: String = ""
     private(set) var audioItem: AudioItem?
 
@@ -53,8 +53,10 @@ final class RelaxingSoundStep: SessionStep, PlayerViewDisplayable {
                 switch state {
                 case .running:
                     self.setupTimer()
+                    self.isRunning = true
                 case .paused, .stopped:
                     self.terminateTimer()
+                    self.isRunning = false
                 }
             }
             .store(in: &cancellables)
@@ -69,12 +71,6 @@ final class RelaxingSoundStep: SessionStep, PlayerViewDisplayable {
             .sink { [unowned self] _ in
                 self.isRunning = false
                 self.skipStep()
-            }
-            .store(in: &cancellables)
-
-        $isRunning
-            .sink { [unowned self] isRunning in
-                self.audioItem?.change(state: isRunning ? .running : .paused)
             }
             .store(in: &cancellables)
 
@@ -95,6 +91,10 @@ final class RelaxingSoundStep: SessionStep, PlayerViewDisplayable {
 
     private func terminateTimer() {
         timer?.cancel()
+    }
+
+    func toggleRunning() {
+        audioItem?.change(state: isRunning ? .paused : .running)
     }
 
     func skipStep() {

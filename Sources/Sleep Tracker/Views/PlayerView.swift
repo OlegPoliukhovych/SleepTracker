@@ -11,7 +11,8 @@ import Combine
 
 protocol PlayerViewDisplayable: ObservableObject {
     var timeLeft: String { get }
-    var isRunning: Bool { get set }
+    var isRunning: Bool { get }
+    func toggleRunning()
     func skipStep()
 }
 
@@ -26,9 +27,7 @@ struct PlayerView<T: PlayerViewDisplayable>: View {
                 .padding()
                 .colorInvert()
             HStack {
-                Button(action: {
-                    self.model.isRunning.toggle()
-                }) {
+                Button(action: self.model.toggleRunning) {
                     Image(systemName: self.model.isRunning ? "pause" : "play")
                         .font(.system(size: 30))
                 }
