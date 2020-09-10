@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8518C394250A24D6004838F4 /* AudioItemHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8518C393250A24D6004838F4 /* AudioItemHandler.swift */; };
-		8518C396250A24F0004838F4 /* AudioItemPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8518C395250A24F0004838F4 /* AudioItemPlayer.swift */; };
+		8518C396250A24F0004838F4 /* AVAudioPlayer+AudioItemHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8518C395250A24F0004838F4 /* AVAudioPlayer+AudioItemHandler.swift */; };
 		8518C398250A2532004838F4 /* AudioItemRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8518C397250A2532004838F4 /* AudioItemRecorder.swift */; };
 		85344AA724F3C553001DE99A /* SleepSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85344AA624F3C553001DE99A /* SleepSession.swift */; };
 		858FBA6B24CCB43800B38B65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858FBA6A24CCB43800B38B65 /* AppDelegate.swift */; };
@@ -42,7 +42,7 @@
 
 /* Begin PBXFileReference section */
 		8518C393250A24D6004838F4 /* AudioItemHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioItemHandler.swift; sourceTree = "<group>"; };
-		8518C395250A24F0004838F4 /* AudioItemPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioItemPlayer.swift; sourceTree = "<group>"; };
+		8518C395250A24F0004838F4 /* AVAudioPlayer+AudioItemHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVAudioPlayer+AudioItemHandler.swift"; sourceTree = "<group>"; };
 		8518C397250A2532004838F4 /* AudioItemRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioItemRecorder.swift; sourceTree = "<group>"; };
 		85344AA624F3C553001DE99A /* SleepSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepSession.swift; sourceTree = "<group>"; };
 		858FBA6724CCB43800B38B65 /* Sleep Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sleep Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,7 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				8518C393250A24D6004838F4 /* AudioItemHandler.swift */,
-				8518C395250A24F0004838F4 /* AudioItemPlayer.swift */,
+				8518C395250A24F0004838F4 /* AVAudioPlayer+AudioItemHandler.swift */,
 				8518C397250A2532004838F4 /* AudioItemRecorder.swift */,
 			);
 			path = AudioHandlers;
@@ -311,7 +311,7 @@
 				858FBA6B24CCB43800B38B65 /* AppDelegate.swift in Sources */,
 				858FBA6D24CCB43800B38B65 /* SceneDelegate.swift in Sources */,
 				8518C394250A24D6004838F4 /* AudioItemHandler.swift in Sources */,
-				8518C396250A24F0004838F4 /* AudioItemPlayer.swift in Sources */,
+				8518C396250A24F0004838F4 /* AVAudioPlayer+AudioItemHandler.swift in Sources */,
 				859AE6E324FBCAA60083D248 /* RelaxingSoundStep.swift in Sources */,
 				85B1309624F6B94D003A4C8E /* PlayerView.swift in Sources */,
 				85C9EE5924D817D30090C222 /* SessionSetup.swift in Sources */,
