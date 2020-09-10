@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8518C394250A24D6004838F4 /* AudioItemHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8518C393250A24D6004838F4 /* AudioItemHandler.swift */; };
+		8518C396250A24F0004838F4 /* AudioItemPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8518C395250A24F0004838F4 /* AudioItemPlayer.swift */; };
+		8518C398250A2532004838F4 /* AudioItemRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8518C397250A2532004838F4 /* AudioItemRecorder.swift */; };
 		85344AA724F3C553001DE99A /* SleepSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85344AA624F3C553001DE99A /* SleepSession.swift */; };
 		858FBA6B24CCB43800B38B65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858FBA6A24CCB43800B38B65 /* AppDelegate.swift */; };
 		858FBA6D24CCB43800B38B65 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858FBA6C24CCB43800B38B65 /* SceneDelegate.swift */; };
@@ -15,7 +18,7 @@
 		858FBA7424CCB43A00B38B65 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 858FBA7324CCB43A00B38B65 /* Preview Assets.xcassets */; };
 		858FBA7724CCB43A00B38B65 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 858FBA7524CCB43A00B38B65 /* LaunchScreen.storyboard */; };
 		859AE6E324FBCAA60083D248 /* RelaxingSoundStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859AE6E224FBCAA60083D248 /* RelaxingSoundStep.swift */; };
-		859AE6E624FC08700083D248 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859AE6E524FC08700083D248 /* AudioPlayer.swift */; };
+		859AE6E624FC08700083D248 /* AudioSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859AE6E524FC08700083D248 /* AudioSession.swift */; };
 		859AE6E924FC0DF20083D248 /* nature.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 859AE6E824FC0DF20083D248 /* nature.m4a */; };
 		85B1309224F68A64003A4C8E /* SleepSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B1309124F68A64003A4C8E /* SleepSessionTests.swift */; };
 		85B1309624F6B94D003A4C8E /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B1309524F6B94D003A4C8E /* PlayerView.swift */; };
@@ -24,6 +27,7 @@
 		85E964382502787900400B61 /* AudioItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E964372502787900400B61 /* AudioItem.swift */; };
 		85F50A5C24EF1D7E0032EEF0 /* SessionSetupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F50A5B24EF1D7E0032EEF0 /* SessionSetupTests.swift */; };
 		85F50A5E24F1C4880032EEF0 /* SleepSessionContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F50A5D24F1C4880032EEF0 /* SleepSessionContainer.swift */; };
+		85FC3438250656B200D72F29 /* AudioProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FC3437250656B200D72F29 /* AudioProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +41,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8518C393250A24D6004838F4 /* AudioItemHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioItemHandler.swift; sourceTree = "<group>"; };
+		8518C395250A24F0004838F4 /* AudioItemPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioItemPlayer.swift; sourceTree = "<group>"; };
+		8518C397250A2532004838F4 /* AudioItemRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioItemRecorder.swift; sourceTree = "<group>"; };
 		85344AA624F3C553001DE99A /* SleepSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepSession.swift; sourceTree = "<group>"; };
 		858FBA6724CCB43800B38B65 /* Sleep Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sleep Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		858FBA6A24CCB43800B38B65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -49,7 +56,7 @@
 		858FBA7D24CCB43A00B38B65 /* Sleep TrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Sleep TrackerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		858FBA8324CCB43A00B38B65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		859AE6E224FBCAA60083D248 /* RelaxingSoundStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelaxingSoundStep.swift; sourceTree = "<group>"; };
-		859AE6E524FC08700083D248 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
+		859AE6E524FC08700083D248 /* AudioSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioSession.swift; sourceTree = "<group>"; };
 		859AE6E824FC0DF20083D248 /* nature.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = nature.m4a; sourceTree = "<group>"; };
 		85B1309124F68A64003A4C8E /* SleepSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepSessionTests.swift; sourceTree = "<group>"; };
 		85B1309524F6B94D003A4C8E /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
@@ -58,6 +65,7 @@
 		85E964372502787900400B61 /* AudioItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioItem.swift; sourceTree = "<group>"; };
 		85F50A5B24EF1D7E0032EEF0 /* SessionSetupTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionSetupTests.swift; sourceTree = "<group>"; };
 		85F50A5D24F1C4880032EEF0 /* SleepSessionContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepSessionContainer.swift; sourceTree = "<group>"; };
+		85FC3437250656B200D72F29 /* AudioProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +86,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8518C392250A24AB004838F4 /* AudioHandlers */ = {
+			isa = PBXGroup;
+			children = (
+				8518C393250A24D6004838F4 /* AudioItemHandler.swift */,
+				8518C395250A24F0004838F4 /* AudioItemPlayer.swift */,
+				8518C397250A2532004838F4 /* AudioItemRecorder.swift */,
+			);
+			path = AudioHandlers;
+			sourceTree = "<group>";
+		};
 		858FBA5E24CCB43800B38B65 = {
 			isa = PBXGroup;
 			children = (
@@ -145,7 +163,7 @@
 		859AE6E424FBCFAB0083D248 /* Handlers */ = {
 			isa = PBXGroup;
 			children = (
-				859AE6E524FC08700083D248 /* AudioPlayer.swift */,
+				85FC343925078E2500D72F29 /* Audio */,
 			);
 			path = Handlers;
 			sourceTree = "<group>";
@@ -175,6 +193,16 @@
 				859AE6E124FBCA850083D248 /* SleepSession */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		85FC343925078E2500D72F29 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				8518C392250A24AB004838F4 /* AudioHandlers */,
+				859AE6E524FC08700083D248 /* AudioSession.swift */,
+				85FC3437250656B200D72F29 /* AudioProvider.swift */,
+			);
+			path = Audio;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -282,11 +310,15 @@
 				85F50A5E24F1C4880032EEF0 /* SleepSessionContainer.swift in Sources */,
 				858FBA6B24CCB43800B38B65 /* AppDelegate.swift in Sources */,
 				858FBA6D24CCB43800B38B65 /* SceneDelegate.swift in Sources */,
+				8518C394250A24D6004838F4 /* AudioItemHandler.swift in Sources */,
+				8518C396250A24F0004838F4 /* AudioItemPlayer.swift in Sources */,
 				859AE6E324FBCAA60083D248 /* RelaxingSoundStep.swift in Sources */,
 				85B1309624F6B94D003A4C8E /* PlayerView.swift in Sources */,
 				85C9EE5924D817D30090C222 /* SessionSetup.swift in Sources */,
 				85344AA724F3C553001DE99A /* SleepSession.swift in Sources */,
-				859AE6E624FC08700083D248 /* AudioPlayer.swift in Sources */,
+				85FC3438250656B200D72F29 /* AudioProvider.swift in Sources */,
+				8518C398250A2532004838F4 /* AudioItemRecorder.swift in Sources */,
+				859AE6E624FC08700083D248 /* AudioSession.swift in Sources */,
 				85E964382502787900400B61 /* AudioItem.swift in Sources */,
 				858FBA6F24CCB43800B38B65 /* ContentView.swift in Sources */,
 				85C9EE5524D74E1B0090C222 /* Color+Palette.swift in Sources */,

@@ -13,7 +13,7 @@ struct AudioItem {
 
     enum Mode {
         case playback(fileUrl: URL, startTime: Date?)
-        case record(destination: String)
+        case record(destination: URL)
     }
 
     enum State {

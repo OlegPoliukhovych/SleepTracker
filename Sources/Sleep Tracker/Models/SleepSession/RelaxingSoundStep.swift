@@ -22,7 +22,7 @@ final class RelaxingSoundStep: SessionStep, PlayerViewDisplayable {
 
     @Published var isRunning: Bool = true
     @Published private(set) var timeLeft: String = ""
-    private let audioItem: AudioItem?
+    private(set) var audioItem: AudioItem?
 
     private var timer: Cancellable?
     private var durationSubject: CurrentValueSubject<TimeInterval, Never>
@@ -59,7 +59,6 @@ final class RelaxingSoundStep: SessionStep, PlayerViewDisplayable {
             }
             .store(in: &cancellables)
 
-
         durationSubject
             .compactMap { [unowned self] in self.formatter.string(from: $0) }
             .sink(receiveValue: { [unowned self] s in self.timeLeft = s })
@@ -83,7 +82,7 @@ final class RelaxingSoundStep: SessionStep, PlayerViewDisplayable {
             .sink { [unowned self] _ in
                 self.audioItem?.change(state: .stopped)
             }
-        .store(in: &cancellables)
+            .store(in: &cancellables)
     }
 
     private func setupTimer() {

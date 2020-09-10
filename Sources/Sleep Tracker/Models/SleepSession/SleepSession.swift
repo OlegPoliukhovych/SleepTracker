@@ -11,12 +11,14 @@ import Combine
 
 protocol SessionStep {
     var kind: Kind { get }
+    var audioItem: AudioItem? { get }
     var skip: AnyPublisher<Void, Never> { get }
     func skipStep()
 }
 
 final class SleepSession: ObservableObject {
 
+    private let audioProvider: AudioProvider
     @Published private(set) var currentStep: SessionStep
     @Published private(set) var isRunning: Bool = true
 
@@ -30,6 +32,9 @@ final class SleepSession: ObservableObject {
         guard let first = iterator.next() else {
             return nil
         }
+
+        audioProvider = AudioProvider(audioItems: steps.compactMap { $0.audioItem })
+
         currentStep = first
 
         steps
@@ -43,11 +48,20 @@ final class SleepSession: ObservableObject {
                 self?.currentStep = next
             }
             .store(in: &cancellables)
+
+        $currentStep
+            .compactMap { $0.audioItem }
+            .sink { [unowned self] audioItem in
+                self.audioProvider.setAccent(audioItem: audioItem)
+            }
+            .store(in: &cancellables)
     }
 
 }
 
 struct SessionStepModel: SessionStep {
+    var audioItem: AudioItem?
+
     let kind: Kind
     var skip: AnyPublisher<Void, Never> {
         skipSubject
@@ -59,6 +73,7 @@ struct SessionStepModel: SessionStep {
 
     init(kind: Kind) {
         self.kind = kind
+        audioItem = nil
     }
 
     func skipStep() {
