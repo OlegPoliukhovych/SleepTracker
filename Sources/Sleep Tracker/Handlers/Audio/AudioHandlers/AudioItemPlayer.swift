@@ -8,33 +8,22 @@
 
 import AVFoundation
 
-struct AudioItemPlayer: AudioItemHandler {
+extension AVAudioPlayer: AudioItemHandler {
 
-    private let audioPlayer: AVAudioPlayer?
+    convenience init(soundUrl: URL, startTime: Date?) throws {
+        try self.init(contentsOf: soundUrl)
 
-    init(soundUrl: URL, startTime: Date?) {
-        self.init(soundUrl: soundUrl)
-        guard let deviceCurrentTime = audioPlayer?.deviceCurrentTime,
-            let startDate = startTime else {
-                return
+        guard let startDate = startTime else {
+            return
         }
-        audioPlayer?.play(atTime: deviceCurrentTime + startDate.timeIntervalSinceNow)
-    }
-
-    init(soundUrl: URL) {
-        audioPlayer = try? AVAudioPlayer(contentsOf: soundUrl)
-        audioPlayer?.numberOfLoops = -1
+        play(atTime: deviceCurrentTime + startDate.timeIntervalSinceNow)
     }
 
     func run() {
-        audioPlayer?.play()
-    }
-
-    func pause() {
-        audioPlayer?.pause()
+        play()
     }
 
     func finish() {
-        audioPlayer?.stop()
+        stop()
     }
 }

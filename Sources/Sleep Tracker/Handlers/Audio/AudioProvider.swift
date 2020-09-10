@@ -40,10 +40,12 @@ final class AudioProvider {
     private func configure(audioItems: [AudioItem]) {
 
         audioItems.forEach { audioItem in
-            let itemHandler: AudioItemHandler
+            let itemHandler: AudioItemHandler?
             switch audioItem.mode {
             case let .playback(fileUrl: url, startTime: date):
-                itemHandler = AudioItemPlayer(soundUrl: url, startTime: date)
+                let player = try? AVAudioPlayer(soundUrl: url, startTime: date)
+                player?.numberOfLoops = -1
+                itemHandler = player
             case .record(destination: let destination):
                 itemHandler = AudioItemRecorder(destination: destination)
             }
@@ -52,11 +54,11 @@ final class AudioProvider {
                 .sink { state in
                     switch state {
                     case .running:
-                        itemHandler.run()
+                        itemHandler?.run()
                     case .paused:
-                        itemHandler.pause()
+                        itemHandler?.pause()
                     case .stopped:
-                        itemHandler.finish()
+                        itemHandler?.finish()
                     }
                 }
                 .store(in: &cancellables)
