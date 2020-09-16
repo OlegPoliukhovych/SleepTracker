@@ -35,4 +35,8 @@ struct AudioItem {
     func change(state: State) {
         stateSubject.send(state)
     }
+
+    func togglePlayback() {
+        stateSubject.send(stateSubject.value == .running ? .paused : .running)
+    }
 }

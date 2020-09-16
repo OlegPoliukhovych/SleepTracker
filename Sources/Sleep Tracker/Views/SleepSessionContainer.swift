@@ -30,7 +30,7 @@ struct SleepSessionContainer: View {
             Spacer()
             GeometryReader { geometry in
                 VStack {
-                    self.view(model: self.model.currentStep)
+                    PlayerView(model: self.model.currentStepViewModel)
                         .frame(height: geometry.size.height * 0.75)
                 }
             }
@@ -39,41 +39,14 @@ struct SleepSessionContainer: View {
         .padding()
         .onReceive(model.$isRunning) { self.isRunning = $0 }
     }
-
-    func view(model: SessionStep) -> some View {
-
-        // TODO: Provide actual view for each step
-        switch model {
-        case let relaxingSoundStep as RelaxingSoundStep:
-            return AnyView (
-                PlayerView(model: relaxingSoundStep)
-            )
-        default:
-            return AnyView(
-                VStack {
-                    Text(model.kind.description)
-                        .foregroundColor(Color.text)
-                        .padding(.bottom, 16)
-                    Button(action: {
-                        withAnimation {
-                            model.skipStep()
-                        }
-                    },
-                           label: {
-                            Text("skip")
-                    })
-                }
-            )
-        }
-    }
 }
 
 struct SleepSessionContainer_Previews: PreviewProvider {
     static var previews: some View {
         SleepSessionContainer(isRunning: Binding<Bool>.constant(true),
                               model: try! SleepSession(steps: [
-                                  SessionStepModel(kind: .relaxingSound),
-                                  SessionStepModel(kind: .noiseRecording)
+                                  SessionStepBaseModel(),
+                                  SessionStepBaseModel()
                               ])!)
     }
 }

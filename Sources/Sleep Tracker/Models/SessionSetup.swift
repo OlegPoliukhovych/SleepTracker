@@ -37,13 +37,13 @@ final class SessionSetup: ObservableObject {
 
         var steps = [SessionStep]()
         if relaxing.enabled {
-            steps.append(RelaxingSoundStep(kind: .relaxingSound, duration: relaxing.value))
+            steps.append(RelaxingSoundStep(duration: relaxing.value))
         }
         if noiseTracking.enabled {
-            steps.append(SessionStepModel(kind: .noiseRecording))
+            steps.append(NoiseRecordingStep())
         }
         if alarm.enabled {
-            steps.append(SessionStepModel(kind: .alarm))
+            steps.append(AlarmStep())
         }
         guard !steps.isEmpty,
             let session = try? SleepSession(steps: steps) else {

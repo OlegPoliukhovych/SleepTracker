@@ -7,13 +7,12 @@
 //
 
 import SwiftUI
-import Combine
 
 protocol PlayerViewDisplayable: ObservableObject {
-    var timeLeft: String { get }
+    var title: String { get }
     var isRunning: Bool { get }
     func toggleRunning()
-    func skipStep()
+    func skipItem()
 }
 
 struct PlayerView<T: PlayerViewDisplayable>: View {
@@ -23,7 +22,7 @@ struct PlayerView<T: PlayerViewDisplayable>: View {
     var body: some View {
         VStack {
             Spacer()
-            Text(model.timeLeft)
+            Text(model.title)
                 .padding()
                 .colorInvert()
             HStack {
@@ -34,7 +33,7 @@ struct PlayerView<T: PlayerViewDisplayable>: View {
             }
             Divider()
                 .padding()
-            Button(action: model.skipStep) {
+            Button(action: model.skipItem) {
                 Text("Skip")
             }
         }
@@ -43,6 +42,6 @@ struct PlayerView<T: PlayerViewDisplayable>: View {
 
 struct PlayerView_Previews: PreviewProvider {
     static var previews: some View {
-        PlayerView(model: RelaxingSoundStep(kind: .relaxingSound, duration: 5))
+        PlayerView(model: PlayerViewModel())
     }
 }
