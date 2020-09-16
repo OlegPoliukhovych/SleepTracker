@@ -10,6 +10,7 @@ import Foundation
 import Combine
 
 protocol PlayerViewModelDataProvidable {
+    var style: PlayerViewControlsStyle { get }
     var title: AnyPublisher<String, Never> { get }
     var isRunning: AnyPublisher<Bool, Never> { get }
     var toggleRunning: () -> Void { get }
@@ -17,7 +18,8 @@ protocol PlayerViewModelDataProvidable {
 }
 
 final class PlayerViewModel: PlayerViewDisplayable {
-    
+
+    let style: PlayerViewControlsStyle
     @Published var title: String = ""
     @Published var isRunning: Bool = false
 
@@ -39,21 +41,24 @@ final class PlayerViewModel: PlayerViewDisplayable {
         isRunning = false
         _toggleRunning = { }
         _skipItem = { }
+        style = .none
     }
 
     convenience init(dataProvider: PlayerViewModelDataProvidable) {
-        self.init(titlePublisher: dataProvider.title,
+        self.init(style: dataProvider.style,
+                  titlePublisher: dataProvider.title,
                   isRunningPublisher: dataProvider.isRunning,
                   toggleRunning: dataProvider.toggleRunning,
                   skipItem: dataProvider.skipItem)
     }
 
-    init(
+    init(style: PlayerViewControlsStyle,
         titlePublisher: AnyPublisher<String, Never>,
         isRunningPublisher: AnyPublisher<Bool, Never>,
         toggleRunning: @escaping () -> Void,
         skipItem: @escaping () -> Void
     ) {
+        self.style = style
         _toggleRunning = toggleRunning
         _skipItem = skipItem
 

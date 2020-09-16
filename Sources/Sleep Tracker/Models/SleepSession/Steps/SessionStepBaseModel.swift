@@ -38,7 +38,11 @@ class SessionStepBaseModel: SessionStep {
     var cancellables = Set<AnyCancellable>()
 
     // MARK: PlayerViewModelDataProvidable
-    
+
+    var style: PlayerViewControlsStyle {
+        .none
+    }
+
     var title: AnyPublisher<String, Never> {
         Empty().eraseToAnyPublisher()
     }

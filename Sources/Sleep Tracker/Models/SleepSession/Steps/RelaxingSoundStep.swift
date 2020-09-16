@@ -58,6 +58,10 @@ final class RelaxingSoundStep: SessionStepBaseModel {
 
     // MARK: PlayerViewModelDataProvidable
 
+    override var style: PlayerViewControlsStyle {
+        .playback
+    }
+
     override var title: AnyPublisher<String, Never> {
         durationSubject
             .compactMap { DateComponentsFormatter.shortTimeString(timeIterval: $0) }

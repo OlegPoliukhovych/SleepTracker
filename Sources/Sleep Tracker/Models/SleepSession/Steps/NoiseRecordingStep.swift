@@ -11,4 +11,12 @@ import Combine
 
 final class NoiseRecordingStep: SessionStepBaseModel {
 
+    override var style: PlayerViewControlsStyle {
+        .recording
+    }
+
+    override var title: AnyPublisher<String, Never> {
+        Just("noise recording")
+            .eraseToAnyPublisher()
+    }
 }
