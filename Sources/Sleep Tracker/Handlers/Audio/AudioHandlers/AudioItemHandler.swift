@@ -9,6 +9,7 @@
 import Foundation
 
 protocol AudioItemHandler {
+    func prepare()
     func run()
     func pause()
     func finish()

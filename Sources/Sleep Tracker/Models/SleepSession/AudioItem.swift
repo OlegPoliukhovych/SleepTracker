@@ -17,6 +17,7 @@ struct AudioItem {
     }
 
     enum State {
+        case initial
         case running
         case paused
         case stopped
@@ -30,7 +31,7 @@ struct AudioItem {
             .eraseToAnyPublisher()
     }
 
-    private let stateSubject = CurrentValueSubject<State, Never>(.running)
+    private let stateSubject = CurrentValueSubject<State, Never>(.initial)
 
     func change(state: State) {
         stateSubject.send(state)

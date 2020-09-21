@@ -11,6 +11,13 @@ import Combine
 
 final class NoiseRecordingStep: SessionStepBaseModel {
 
+    override init() {
+        super.init()
+        audioItem = AudioItem(mode: .record(destination: FileManager.default.recordingsFolderUrl))
+    }
+
+    // MARK: PlayerViewModelDataProvidable
+
     override var style: PlayerViewControlsStyle {
         .recording
     }

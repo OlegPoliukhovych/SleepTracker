@@ -28,6 +28,7 @@
 		859AE6E924FC0DF20083D248 /* nature.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 859AE6E824FC0DF20083D248 /* nature.m4a */; };
 		85B1309224F68A64003A4C8E /* SleepSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B1309124F68A64003A4C8E /* SleepSessionTests.swift */; };
 		85B1309624F6B94D003A4C8E /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B1309524F6B94D003A4C8E /* PlayerView.swift */; };
+		85C3AB4C2513BDC6008FE926 /* FileManager+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C3AB4B2513BDC6008FE926 /* FileManager+Extensions.swift */; };
 		85C9EE5524D74E1B0090C222 /* Color+Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C9EE5424D74E1B0090C222 /* Color+Palette.swift */; };
 		85C9EE5924D817D30090C222 /* SessionSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C9EE5824D817D30090C222 /* SessionSetup.swift */; };
 		85E964382502787900400B61 /* AudioItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E964372502787900400B61 /* AudioItem.swift */; };
@@ -72,6 +73,7 @@
 		859AE6E824FC0DF20083D248 /* nature.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = nature.m4a; sourceTree = "<group>"; };
 		85B1309124F68A64003A4C8E /* SleepSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepSessionTests.swift; sourceTree = "<group>"; };
 		85B1309524F6B94D003A4C8E /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
+		85C3AB4B2513BDC6008FE926 /* FileManager+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extensions.swift"; sourceTree = "<group>"; };
 		85C9EE5424D74E1B0090C222 /* Color+Palette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Palette.swift"; sourceTree = "<group>"; };
 		85C9EE5824D817D30090C222 /* SessionSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionSetup.swift; sourceTree = "<group>"; };
 		85E964372502787900400B61 /* AudioItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioItem.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				855D759B250FAA9300244F30 /* DateComponentsFormatter+Extensions.swift */,
+				85C3AB4B2513BDC6008FE926 /* FileManager+Extensions.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -358,6 +361,7 @@
 				8518C398250A2532004838F4 /* AudioItemRecorder.swift in Sources */,
 				85901ADE2511749200C4E409 /* NoiseRecordingStep.swift in Sources */,
 				855D75A12510C27F00244F30 /* SessionStepBaseModel.swift in Sources */,
+				85C3AB4C2513BDC6008FE926 /* FileManager+Extensions.swift in Sources */,
 				859AE6E624FC08700083D248 /* AudioSession.swift in Sources */,
 				85E964382502787900400B61 /* AudioItem.swift in Sources */,
 				858FBA6F24CCB43800B38B65 /* ContentView.swift in Sources */,

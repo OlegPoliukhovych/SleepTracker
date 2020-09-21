@@ -47,6 +47,7 @@ final class SleepSession: ObservableObject {
             .compactMap { $0.audioItem }
             .sink { [unowned self] audioItem in
                 self.audioProvider?.setAccent(audioItem: audioItem)
+                audioItem.change(state: .running)
             }
             .store(in: &cancellables)
 

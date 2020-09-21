@@ -28,6 +28,8 @@ final class RelaxingSoundStep: SessionStepBaseModel {
         audioItem?.statePublisher
             .sink { [unowned self] state in
                 switch state {
+                case .initial:
+                    break
                 case .running:
                     self.setupTimer()
                 case .paused, .stopped:

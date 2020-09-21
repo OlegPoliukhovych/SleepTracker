@@ -18,15 +18,8 @@ extension AVAudioSession {
     }
 
     func setup(audioItems: [AudioItem]) throws {
-        let category: AVAudioSession.Category = audioItems.contains(where: { item in
-            if case AudioItem.Mode.record(destination: _) = item.mode {
-                return true
-            }
-            return false
-        }) ? .playAndRecord : .playback
-
         do {
-            try setCategory(category, mode: .default)
+            try setCategory(.playAndRecord, mode: .default, options: .defaultToSpeaker)
             try setActive(true)
         } catch {
             throw error

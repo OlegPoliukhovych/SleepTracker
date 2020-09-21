@@ -13,6 +13,7 @@ import Combine
 final class AudioProvider {
 
     private var accentAudioItem: AudioItem?
+    private var accentAudioItemCancellable: AnyCancellable?
 
     private var cancellables = Set<AnyCancellable>()
 
@@ -42,9 +43,7 @@ final class AudioProvider {
             let itemHandler: AudioItemHandler?
             switch audioItem.mode {
             case let .playback(fileUrl: url, startTime: date):
-                let player = try? AVAudioPlayer(soundUrl: url, startTime: date)
-                player?.numberOfLoops = -1
-                itemHandler = player
+                itemHandler = try? AVAudioPlayer(soundUrl: url, startTime: date)
             case .record(destination: let destination):
                 itemHandler = AudioItemRecorder(destination: destination)
             }
@@ -52,6 +51,8 @@ final class AudioProvider {
             audioItem.statePublisher
                 .sink { state in
                     switch state {
+                    case .initial:
+                        itemHandler?.prepare()
                     case .running:
                         itemHandler?.run()
                     case .paused:

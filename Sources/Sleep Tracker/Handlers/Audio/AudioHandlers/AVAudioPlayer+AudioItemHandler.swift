@@ -19,6 +19,11 @@ extension AVAudioPlayer: AudioItemHandler {
         play(atTime: deviceCurrentTime + startDate.timeIntervalSinceNow)
     }
 
+
+    func prepare() {
+        numberOfLoops = -1
+    }
+
     func run() {
         play()
     }
