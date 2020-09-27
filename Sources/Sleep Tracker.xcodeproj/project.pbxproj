@@ -11,6 +11,7 @@
 		8518C396250A24F0004838F4 /* AVAudioPlayer+AudioItemHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8518C395250A24F0004838F4 /* AVAudioPlayer+AudioItemHandler.swift */; };
 		8518C398250A2532004838F4 /* AudioItemRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8518C397250A2532004838F4 /* AudioItemRecorder.swift */; };
 		85344AA724F3C553001DE99A /* SleepSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85344AA624F3C553001DE99A /* SleepSession.swift */; };
+		8545B7BE251C900000E41C0D /* Calendar+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8545B7BD251C900000E41C0D /* Calendar+Extensions.swift */; };
 		855D759C250FAA9300244F30 /* DateComponentsFormatter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855D759B250FAA9300244F30 /* DateComponentsFormatter+Extensions.swift */; };
 		855D759F2510C22100244F30 /* SessionStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855D759E2510C22100244F30 /* SessionStep.swift */; };
 		855D75A12510C27F00244F30 /* SessionStepBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855D75A02510C27F00244F30 /* SessionStepBaseModel.swift */; };
@@ -23,6 +24,10 @@
 		85901ADC25116BB400C4E409 /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85901ADB25116BB400C4E409 /* PlayerViewModel.swift */; };
 		85901ADE2511749200C4E409 /* NoiseRecordingStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85901ADD2511749200C4E409 /* NoiseRecordingStep.swift */; };
 		85901AE02512287D00C4E409 /* AlarmStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85901ADF2512287D00C4E409 /* AlarmStep.swift */; };
+		8599F3D6251DF14D008EC688 /* UserNotificationCenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8599F3D5251DF14D008EC688 /* UserNotificationCenterDelegate.swift */; };
+		8599F3DA251DF531008EC688 /* alarm.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 8599F3D9251DF526008EC688 /* alarm.m4a */; };
+		8599F3E5251E3C54008EC688 /* NotificationCenterProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8599F3E4251E3C54008EC688 /* NotificationCenterProvider.swift */; };
+		8599F3E9251E3CE7008EC688 /* UserNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8599F3E8251E3CE7008EC688 /* UserNotificationCenter.swift */; };
 		859AE6E324FBCAA60083D248 /* RelaxingSoundStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859AE6E224FBCAA60083D248 /* RelaxingSoundStep.swift */; };
 		859AE6E624FC08700083D248 /* AudioSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859AE6E524FC08700083D248 /* AudioSession.swift */; };
 		859AE6E924FC0DF20083D248 /* nature.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 859AE6E824FC0DF20083D248 /* nature.m4a */; };
@@ -52,6 +57,7 @@
 		8518C395250A24F0004838F4 /* AVAudioPlayer+AudioItemHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVAudioPlayer+AudioItemHandler.swift"; sourceTree = "<group>"; };
 		8518C397250A2532004838F4 /* AudioItemRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioItemRecorder.swift; sourceTree = "<group>"; };
 		85344AA624F3C553001DE99A /* SleepSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepSession.swift; sourceTree = "<group>"; };
+		8545B7BD251C900000E41C0D /* Calendar+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+Extensions.swift"; sourceTree = "<group>"; };
 		855D759B250FAA9300244F30 /* DateComponentsFormatter+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateComponentsFormatter+Extensions.swift"; sourceTree = "<group>"; };
 		855D759E2510C22100244F30 /* SessionStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStep.swift; sourceTree = "<group>"; };
 		855D75A02510C27F00244F30 /* SessionStepBaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStepBaseModel.swift; sourceTree = "<group>"; };
@@ -68,6 +74,10 @@
 		85901ADB25116BB400C4E409 /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
 		85901ADD2511749200C4E409 /* NoiseRecordingStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoiseRecordingStep.swift; sourceTree = "<group>"; };
 		85901ADF2512287D00C4E409 /* AlarmStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmStep.swift; sourceTree = "<group>"; };
+		8599F3D5251DF14D008EC688 /* UserNotificationCenterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationCenterDelegate.swift; sourceTree = "<group>"; };
+		8599F3D9251DF526008EC688 /* alarm.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = alarm.m4a; sourceTree = "<group>"; };
+		8599F3E4251E3C54008EC688 /* NotificationCenterProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCenterProvider.swift; sourceTree = "<group>"; };
+		8599F3E8251E3CE7008EC688 /* UserNotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationCenter.swift; sourceTree = "<group>"; };
 		859AE6E224FBCAA60083D248 /* RelaxingSoundStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelaxingSoundStep.swift; sourceTree = "<group>"; };
 		859AE6E524FC08700083D248 /* AudioSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioSession.swift; sourceTree = "<group>"; };
 		859AE6E824FC0DF20083D248 /* nature.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = nature.m4a; sourceTree = "<group>"; };
@@ -115,6 +125,10 @@
 			children = (
 				855D759B250FAA9300244F30 /* DateComponentsFormatter+Extensions.swift */,
 				85C3AB4B2513BDC6008FE926 /* FileManager+Extensions.swift */,
+				8545B7BD251C900000E41C0D /* Calendar+Extensions.swift */,
+				8599F3D5251DF14D008EC688 /* UserNotificationCenterDelegate.swift */,
+				8599F3E4251E3C54008EC688 /* NotificationCenterProvider.swift */,
+				8599F3E8251E3CE7008EC688 /* UserNotificationCenter.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -207,6 +221,7 @@
 		859AE6E724FC0DD40083D248 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8599F3D9251DF526008EC688 /* alarm.m4a */,
 				859AE6E824FC0DF20083D248 /* nature.m4a */,
 			);
 			path = Resources;
@@ -286,7 +301,7 @@
 		858FBA5F24CCB43800B38B65 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1160;
+				LastSwiftUpdateCheck = 1200;
 				LastUpgradeCheck = 1160;
 				ORGANIZATIONNAME = "Oleg Poliukhovych";
 				TargetAttributes = {
@@ -325,6 +340,7 @@
 			files = (
 				858FBA7724CCB43A00B38B65 /* LaunchScreen.storyboard in Resources */,
 				859AE6E924FC0DF20083D248 /* nature.m4a in Resources */,
+				8599F3DA251DF531008EC688 /* alarm.m4a in Resources */,
 				858FBA7424CCB43A00B38B65 /* Preview Assets.xcassets in Resources */,
 				858FBA7124CCB43A00B38B65 /* Assets.xcassets in Resources */,
 			);
@@ -353,18 +369,22 @@
 				859AE6E324FBCAA60083D248 /* RelaxingSoundStep.swift in Sources */,
 				855D759C250FAA9300244F30 /* DateComponentsFormatter+Extensions.swift in Sources */,
 				85B1309624F6B94D003A4C8E /* PlayerView.swift in Sources */,
+				8599F3D6251DF14D008EC688 /* UserNotificationCenterDelegate.swift in Sources */,
 				85901ADC25116BB400C4E409 /* PlayerViewModel.swift in Sources */,
 				85C9EE5924D817D30090C222 /* SessionSetup.swift in Sources */,
 				85901AE02512287D00C4E409 /* AlarmStep.swift in Sources */,
+				8599F3E5251E3C54008EC688 /* NotificationCenterProvider.swift in Sources */,
 				85344AA724F3C553001DE99A /* SleepSession.swift in Sources */,
 				85FC3438250656B200D72F29 /* AudioProvider.swift in Sources */,
 				8518C398250A2532004838F4 /* AudioItemRecorder.swift in Sources */,
+				8545B7BE251C900000E41C0D /* Calendar+Extensions.swift in Sources */,
 				85901ADE2511749200C4E409 /* NoiseRecordingStep.swift in Sources */,
 				855D75A12510C27F00244F30 /* SessionStepBaseModel.swift in Sources */,
 				85C3AB4C2513BDC6008FE926 /* FileManager+Extensions.swift in Sources */,
 				859AE6E624FC08700083D248 /* AudioSession.swift in Sources */,
 				85E964382502787900400B61 /* AudioItem.swift in Sources */,
 				858FBA6F24CCB43800B38B65 /* ContentView.swift in Sources */,
+				8599F3E9251E3CE7008EC688 /* UserNotificationCenter.swift in Sources */,
 				85C9EE5524D74E1B0090C222 /* Color+Palette.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

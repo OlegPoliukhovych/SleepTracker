@@ -54,6 +54,12 @@ final class SleepSession: ObservableObject {
         $currentStep
             .sink { [unowned self] in self.currentStepViewModel = .init(dataProvider: $0) }
             .store(in: &cancellables)
+
+        UserNotificationCenterDelegate.shared.notificationReceived
+            .sink { notification in
+                // TODO: Provide alarm fired interface
+            }
+            .store(in: &cancellables)
     }
 
 }

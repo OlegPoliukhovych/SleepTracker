@@ -87,7 +87,12 @@ struct SessionSetupView: View {
                     VStack {
                         SettingOptionSelectableView(model: model.alarm, selected: $alarmExtended)
                         if alarmExtended {
-                            DatePicker("", selection: $model.alarm.value, displayedComponents: .hourAndMinute).colorInvert()
+                            if #available(iOS 14.0, *) {
+                                DatePicker("", selection: $model.alarm.value, displayedComponents: .hourAndMinute)
+                                    .datePickerStyle(WheelDatePickerStyle())
+                            } else {
+                                DatePicker("", selection: $model.alarm.value, displayedComponents: .hourAndMinute)
+                            }
                         }
                     }
                 }

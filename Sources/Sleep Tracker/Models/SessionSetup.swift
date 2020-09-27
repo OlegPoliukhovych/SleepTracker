@@ -21,8 +21,7 @@ final class SessionSetup: ObservableObject {
 
     init() {
         relaxing = .init(kind: .relaxingSound, value: 300, values: [300, 600, 900, 1200, 1500])
-        let defaultAlarmTimeDate = Calendar.current.date(from: DateComponents(hour: 7, minute: 0))!
-        alarm = .init(kind: .alarm, value: defaultAlarmTimeDate, values: nil)
+        alarm = .init(kind: .alarm, value: Calendar.current.nearestDate(matchingHour: 7, minute: 0), values: nil)
         noiseTracking = .init(kind: .noiseRecording, value: (), values: nil)
 
         Publishers
@@ -30,6 +29,30 @@ final class SessionSetup: ObservableObject {
             .map { $0 || $1 || $2 }
             .eraseToAnyPublisher()
             .assign(to: \.isReadyToStart, on: self)
+            .store(in: &cancellables)
+
+        // Force disable alarm if local notifications are unauthorized
+
+        Publishers.CombineLatest(alarm.$enabled.removeDuplicates(),
+                                 UserNotificationCenter.shared.isUserNotificationsAuthorized)
+            .dropFirst()
+            .filter { $0.0 && !$0.1 }
+            .setFailureType(to: Error.self)
+            .flatMap { _ in UserNotificationCenter.shared.requestAuthorization()}
+            .filter { !$0 }
+            .receive(on: RunLoop.main)
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .failure(_):
+                    // TODO: handle authorization error
+                    break
+                case .finished:
+                    break
+                }
+            }, receiveValue: { _ in
+                self.alarm.enabled = false
+                // TODO: prompt user to enable notifications in settings
+            })
             .store(in: &cancellables)
     }
 
@@ -43,7 +66,7 @@ final class SessionSetup: ObservableObject {
             steps.append(NoiseRecordingStep())
         }
         if alarm.enabled {
-            steps.append(AlarmStep())
+            steps.append(AlarmStep(date: Calendar.current.nearestDate(to: self.alarm.value, matching: [.hour, .minute])))
         }
         guard !steps.isEmpty,
             let session = try? SleepSession(steps: steps) else {
