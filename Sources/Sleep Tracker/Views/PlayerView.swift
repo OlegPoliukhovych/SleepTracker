@@ -27,15 +27,14 @@ struct PlayerView<T: PlayerViewDisplayable>: View {
     var body: some View {
         VStack {
             Spacer()
-            if model.style != .none {
-                VStack {
-                    Text(self.model.title)
-                        .padding()
-                        .colorInvert()
+            VStack {
+                Text(self.model.title)
+                    .padding()
+                if model.style != .none {
                     HStack {
                         Button(action: self.model.toggleRunning) {
                             Image(systemName: self.model.isRunning ? "pause" :
-                                self.model.style == .playback ? "play" : "largecircle.fill.circle")
+                                    self.model.style == .playback ? "play" : "largecircle.fill.circle")
                                 .font(.system(size: 30))
                                 .foregroundColor(self.model.style == .recording ? Color.red : nil)
                         }

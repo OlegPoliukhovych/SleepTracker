@@ -15,8 +15,10 @@ final class SleepSession: ObservableObject {
     @Published private var currentStep: SessionStep
     @Published private(set) var currentStepViewModel: PlayerViewModel!
     @Published private(set) var isRunning: Bool = true
+    @Published private(set) var isAlarmFired: Bool = false
 
     private var iterator: IndexingIterator<[SessionStep]>
+    private var timer: Cancellable?
     private var cancellables = Set<AnyCancellable>()
 
     init?(steps: [SessionStep]) throws {
@@ -55,11 +57,23 @@ final class SleepSession: ObservableObject {
             .sink { [unowned self] in self.currentStepViewModel = .init(dataProvider: $0) }
             .store(in: &cancellables)
 
-        UserNotificationCenterDelegate.shared.notificationReceived
-            .sink { notification in
-                // TODO: Provide alarm fired interface
-            }
-            .store(in: &cancellables)
+        // Using timer to mark if alarm fired because local notification can be skipped in background
+        if let alarmStep = steps.first(where: { $0 is AlarmStep }),
+           let audioItem = alarmStep.audioItem,
+           case let AudioItem.Mode.playback(_, date) = audioItem.mode,
+           let alarmDate = date {
+
+            timer = Timer.TimerPublisher(interval: alarmDate.timeIntervalSinceNow, runLoop: .current, mode: .default)
+                .autoconnect()
+                .sink { [weak self] _ in
+                    steps.dropLast().forEach({ $0.skipStep() })
+                    self?.isAlarmFired = true
+                }
+        }
+    }
+
+    deinit {
+        timer?.cancel()
     }
 
 }

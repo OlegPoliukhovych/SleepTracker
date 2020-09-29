@@ -15,26 +15,30 @@ struct SleepSessionContainer: View {
 
     var body: some View {
         VStack {
-            HStack() {
-                Spacer()
-                Button(action: {
-                    withAnimation {
-                        self.isRunning.toggle()
+            if self.model.isAlarmFired {
+                AlarmFiredView(shouldClose: self.$isRunning)
+            } else {
+                HStack() {
+                    Spacer()
+                    Button(action: {
+                        withAnimation {
+                            self.isRunning.toggle()
+                        }
+                    }) {
+                        Image(systemName: "xmark")
                     }
-                }) {
-                    Image(systemName: "xmark")
+                    .accentColor(Color.text)
+                    .padding()
                 }
-                .accentColor(Color.text)
-                .padding()
-            }
-            Spacer()
-            GeometryReader { geometry in
-                VStack {
-                    PlayerView(model: self.model.currentStepViewModel)
-                        .frame(height: geometry.size.height * 0.75)
+                Spacer()
+                GeometryReader { geometry in
+                    VStack {
+                        PlayerView(model: self.model.currentStepViewModel)
+                            .frame(height: geometry.size.height * 0.75)
+                    }
                 }
+                Spacer()
             }
-            Spacer()
         }
         .padding()
         .onReceive(model.$isRunning) { self.isRunning = $0 }

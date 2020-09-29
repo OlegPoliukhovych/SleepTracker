@@ -41,7 +41,7 @@ final class RelaxingSoundStep: SessionStepBaseModel {
         durationSubject
             .filter { $0 == .zero }
             .sink { [unowned self] _ in
-                self.audioItem?.change(state: .stopped)
+                self.skipStep()
             }
             .store(in: &cancellables)
     }

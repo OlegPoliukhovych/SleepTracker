@@ -11,7 +11,10 @@ import Combine
 
 final class AlarmStep: SessionStepBaseModel {
 
+    private let date: Date
+
     init(date: Date) {
+        self.date = date
         super.init()
 
         if let path = Bundle.main.path(forResource: "alarm.m4a", ofType: nil) {
@@ -20,5 +23,13 @@ final class AlarmStep: SessionStepBaseModel {
         } else {
             self.audioItem = nil
         }
+    }
+
+    override var title: AnyPublisher<String, Never> {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .none
+        formatter.timeStyle = .short
+
+        return Just("Alarm at \(formatter.string(from: date))").eraseToAnyPublisher()
     }
 }

@@ -31,6 +31,7 @@
 		859AE6E324FBCAA60083D248 /* RelaxingSoundStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859AE6E224FBCAA60083D248 /* RelaxingSoundStep.swift */; };
 		859AE6E624FC08700083D248 /* AudioSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859AE6E524FC08700083D248 /* AudioSession.swift */; };
 		859AE6E924FC0DF20083D248 /* nature.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 859AE6E824FC0DF20083D248 /* nature.m4a */; };
+		859E112C2523351500CAA2BF /* AlarmFiredView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859E112B2523351500CAA2BF /* AlarmFiredView.swift */; };
 		85B1309224F68A64003A4C8E /* SleepSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B1309124F68A64003A4C8E /* SleepSessionTests.swift */; };
 		85B1309624F6B94D003A4C8E /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B1309524F6B94D003A4C8E /* PlayerView.swift */; };
 		85C3AB4C2513BDC6008FE926 /* FileManager+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C3AB4B2513BDC6008FE926 /* FileManager+Extensions.swift */; };
@@ -81,6 +82,7 @@
 		859AE6E224FBCAA60083D248 /* RelaxingSoundStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelaxingSoundStep.swift; sourceTree = "<group>"; };
 		859AE6E524FC08700083D248 /* AudioSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioSession.swift; sourceTree = "<group>"; };
 		859AE6E824FC0DF20083D248 /* nature.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = nature.m4a; sourceTree = "<group>"; };
+		859E112B2523351500CAA2BF /* AlarmFiredView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmFiredView.swift; sourceTree = "<group>"; };
 		85B1309124F68A64003A4C8E /* SleepSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepSessionTests.swift; sourceTree = "<group>"; };
 		85B1309524F6B94D003A4C8E /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		85C3AB4B2513BDC6008FE926 /* FileManager+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extensions.swift"; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 				858FBA6E24CCB43800B38B65 /* ContentView.swift */,
 				85F50A5D24F1C4880032EEF0 /* SleepSessionContainer.swift */,
 				85B1309524F6B94D003A4C8E /* PlayerView.swift */,
+				859E112B2523351500CAA2BF /* AlarmFiredView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -382,6 +385,7 @@
 				855D75A12510C27F00244F30 /* SessionStepBaseModel.swift in Sources */,
 				85C3AB4C2513BDC6008FE926 /* FileManager+Extensions.swift in Sources */,
 				859AE6E624FC08700083D248 /* AudioSession.swift in Sources */,
+				859E112C2523351500CAA2BF /* AlarmFiredView.swift in Sources */,
 				85E964382502787900400B61 /* AudioItem.swift in Sources */,
 				858FBA6F24CCB43800B38B65 /* ContentView.swift in Sources */,
 				8599F3E9251E3CE7008EC688 /* UserNotificationCenter.swift in Sources */,
