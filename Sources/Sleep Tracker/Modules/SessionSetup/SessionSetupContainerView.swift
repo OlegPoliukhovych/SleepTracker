@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  SessionSetupContainerView.swift
 //  Sleep Tracker
 //
 //  Created by Oleg Poliukhovych on 7/25/20.
@@ -8,27 +8,7 @@
 
 import SwiftUI
 
-struct CheckButtonStyle: ButtonStyle {
-
-    private let disabled: Bool
-
-    init(disabled: Bool = false) {
-        self.disabled = disabled
-    }
-
-    func makeBody(configuration: Configuration) -> some View {
-
-        configuration.label
-            .frame(minWidth: 80, maxHeight: 50, alignment: .center)
-            .foregroundColor(configuration.isPressed ? Color.white.opacity(0.25) : .white)
-            .background(Color.button)
-            .cornerRadius(10)
-            .padding(1)
-            .opacity(disabled ? 0.5 : 1)
-    }
-}
-
-struct ContentView: View {
+struct SessionSetupContainerView: View {
 
     @ObservedObject private var model = SessionSetup()
     @State private var isSessionRunning = false
@@ -43,7 +23,7 @@ struct ContentView: View {
     private func view() -> some View {
         if isSessionRunning, let session = model.prepareSession() {
             return AnyView (
-                SleepSessionContainer(isRunning: $isSessionRunning, model: session)
+                SleepSessionContainerView(isRunning: $isSessionRunning, model: session)
                     .transition(.opacity)
             )
         } else {
@@ -109,28 +89,13 @@ struct SessionSetupView: View {
                     }
                 }
                 .disabled(!model.isReadyToStart)
-                .buttonStyle(CheckButtonStyle(disabled: !model.isReadyToStart))
+                .buttonStyle(SquaredButtonStyle(disabled: !model.isReadyToStart))
                 .padding(.top, 32)
             }
             .padding()
             Spacer()
         }
         .animation(Animation.spring(), value: relaxingSoundExtended || alarmExtended)
-    }
-}
-
-struct ContainerView<Content: View>: View {
-
-    private let content: Content
-
-    init(@ViewBuilder content: () -> Content) {
-        self.content = content()
-    }
-
-    var body: some View {
-        content
-            .background(Color.elementBackground)
-            .clipShape(RoundedRectangle(cornerRadius: 11))
     }
 }
 
@@ -202,7 +167,7 @@ struct SettingOptionSelectableView<T: SettingDisplayable & SettingOptionable>: V
                             .font(.system(size: 12))
                     }
                 }
-                .buttonStyle(CheckButtonStyle())
+                .buttonStyle(SquaredButtonStyle())
             }
         }
     }
@@ -228,7 +193,7 @@ struct OptionSelectionView<T: OptionSelectable>: View {
                             .font(.system(size: 14))
                             .multilineTextAlignment(.center)
                     }
-                    .buttonStyle(CheckButtonStyle())
+                    .buttonStyle(SquaredButtonStyle())
                 }
             }
         }
@@ -238,6 +203,6 @@ struct OptionSelectionView<T: OptionSelectable>: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        SessionSetupContainerView()
     }
 }

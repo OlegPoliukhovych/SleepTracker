@@ -20,7 +20,7 @@ final class SessionSetup: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
 
     init() {
-        relaxing = .init(kind: .relaxingSound, value: 300, values: [300, 600, 900, 1200, 1500])
+        relaxing = .init(kind: .relaxingSound, value: 300, values: stride(from: 300, to: 2000, by: 300).map{$0})
         alarm = .init(kind: .alarm, value: Calendar.current.nearestDate(matchingHour: 7, minute: 0), values: nil)
         noiseTracking = .init(kind: .noiseRecording, value: (), values: nil)
 
