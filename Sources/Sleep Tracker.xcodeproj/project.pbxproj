@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8517F16025306E5D0035DBE9 /* SessionSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8517F15F25306E5D0035DBE9 /* SessionSetting.swift */; };
+		8517F164253101890035DBE9 /* DateFormatter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8517F163253101890035DBE9 /* DateFormatter+Extensions.swift */; };
 		8518C394250A24D6004838F4 /* AudioItemHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8518C393250A24D6004838F4 /* AudioItemHandler.swift */; };
 		8518C396250A24F0004838F4 /* AVAudioPlayer+AudioItemHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8518C395250A24F0004838F4 /* AVAudioPlayer+AudioItemHandler.swift */; };
 		8518C398250A2532004838F4 /* AudioItemRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8518C397250A2532004838F4 /* AudioItemRecorder.swift */; };
@@ -56,6 +58,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8517F15F25306E5D0035DBE9 /* SessionSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionSetting.swift; sourceTree = "<group>"; };
+		8517F163253101890035DBE9 /* DateFormatter+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extensions.swift"; sourceTree = "<group>"; };
 		8518C393250A24D6004838F4 /* AudioItemHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioItemHandler.swift; sourceTree = "<group>"; };
 		8518C395250A24F0004838F4 /* AVAudioPlayer+AudioItemHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVAudioPlayer+AudioItemHandler.swift"; sourceTree = "<group>"; };
 		8518C397250A2532004838F4 /* AudioItemRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioItemRecorder.swift; sourceTree = "<group>"; };
@@ -143,6 +147,7 @@
 				855D759B250FAA9300244F30 /* DateComponentsFormatter+Extensions.swift */,
 				85C3AB4B2513BDC6008FE926 /* FileManager+Extensions.swift */,
 				8545B7BD251C900000E41C0D /* Calendar+Extensions.swift */,
+				8517F163253101890035DBE9 /* DateFormatter+Extensions.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -253,6 +258,7 @@
 		85FE3979252E1C59000AF906 /* SessionSetup */ = {
 			isa = PBXGroup;
 			children = (
+				8517F15F25306E5D0035DBE9 /* SessionSetting.swift */,
 				85C9EE5824D817D30090C222 /* SessionSetup.swift */,
 				858FBA6E24CCB43800B38B65 /* SessionSetupContainerView.swift */,
 			);
@@ -395,6 +401,7 @@
 				85FE3982252E1F19000AF906 /* ContainerView.swift in Sources */,
 				855D759C250FAA9300244F30 /* DateComponentsFormatter+Extensions.swift in Sources */,
 				85B1309624F6B94D003A4C8E /* PlayerView.swift in Sources */,
+				8517F164253101890035DBE9 /* DateFormatter+Extensions.swift in Sources */,
 				8599F3D6251DF14D008EC688 /* UserNotificationCenterDelegate.swift in Sources */,
 				85901ADC25116BB400C4E409 /* PlayerViewModel.swift in Sources */,
 				85C9EE5924D817D30090C222 /* SessionSetup.swift in Sources */,
@@ -404,6 +411,7 @@
 				85FE3988252E202A000AF906 /* SquaredButtonStyle.swift in Sources */,
 				85FC3438250656B200D72F29 /* AudioProvider.swift in Sources */,
 				8518C398250A2532004838F4 /* AudioItemRecorder.swift in Sources */,
+				8517F16025306E5D0035DBE9 /* SessionSetting.swift in Sources */,
 				8545B7BE251C900000E41C0D /* Calendar+Extensions.swift in Sources */,
 				85901ADE2511749200C4E409 /* NoiseRecordingStep.swift in Sources */,
 				855D75A12510C27F00244F30 /* SessionStepBaseModel.swift in Sources */,

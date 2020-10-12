@@ -11,18 +11,36 @@ import Combine
 
 final class SessionSetup: ObservableObject {
 
-    var relaxing: Setting<TimeInterval>
-    var noiseTracking: Setting<Void>
-    var alarm: Setting<Date>
+    var relaxing: ValueSetting<TimeInterval>
+    var noiseTracking: PlainSetting
+    var alarm: ValueSetting<Date>
 
     @Published private(set) var isReadyToStart = false
 
     private var cancellables = Set<AnyCancellable>()
 
     init() {
-        relaxing = .init(kind: .relaxingSound, value: 300, values: stride(from: 300, to: 2000, by: 300).map{$0})
-        alarm = .init(kind: .alarm, value: Calendar.current.nearestDate(matchingHour: 7, minute: 0), values: nil)
-        noiseTracking = .init(kind: .noiseRecording, value: (), values: nil)
+        relaxing = .init(
+            kind: .relaxingSound,
+            value: 300,
+            options: stride(from: 300, to: 2000, by: 300).map{$0},
+            viewInfo: (
+                valueDescriptor: { "\(Int($0) / 60) min" },
+                imageDescriptor: "timer"
+            )
+        )
+
+        noiseTracking = .init(kind: .noiseRecording)
+
+        alarm = .init(
+            kind: .alarm,
+            value: Calendar.current.nearestDate(matchingHour: 7, minute: 0),
+            options: [],
+            viewInfo: (
+                valueDescriptor: { DateFormatter.shortTime(from: $0) },
+                imageDescriptor: "alarm"
+            )
+        )
 
         Publishers
             .CombineLatest3(relaxing.$enabled, noiseTracking.$enabled, alarm.$enabled)
@@ -73,90 +91,5 @@ final class SessionSetup: ObservableObject {
             return nil
         }
         return session
-    }
-}
-
-enum Kind: String, CustomStringConvertible {
-    case relaxingSound = "Relaxing sound"
-    case noiseRecording = "Noise recording"
-    case alarm = "Alarm"
-
-    var description: String {
-        rawValue
-    }
-}
-
-class Setting<T>: Identifiable {
-    @Published var value: T
-    var options: [T]?
-    let kind: Kind
-    @Published var enabled: Bool
-
-    init(
-        kind: Kind,
-        enabled: Bool = false,
-        value: T,
-        values: [T]?
-    ) {
-        self.kind = kind
-        self.enabled = enabled
-        self.value = value
-        self.options = values
-    }
-
-}
-
-extension Setting: SettingDisplayable {
-    var title: String {
-        return kind.description
-    }
-}
-
-extension Setting: SettingOptionable {
-
-    var imageName: String? {
-        switch kind {
-        case .relaxingSound:
-            return "timer"
-        case .alarm:
-            return "alarm"
-        case .noiseRecording:
-            return nil
-        }
-    }
-
-    var valueDescription: String {
-        switch (kind, value) {
-        case (.relaxingSound, let v as TimeInterval):
-            return "\(Int(v) / 60) min"
-        case (.alarm, let v as Date):
-            let formatter = DateFormatter()
-            formatter.dateStyle = .none
-            formatter.timeStyle = .short
-            return formatter.string(from: v)
-        default:
-            return ""
-        }
-    }
-}
-
-extension Setting: OptionSelectable {
-
-    var values: [String] {
-        switch (kind, value) {
-        case (.relaxingSound, _):
-            guard let options = options as? [TimeInterval] else { return [] }
-            return options.map { "\(Int($0) / 60)\nmin"}
-        default:
-            return []
-        }
-    }
-
-    func selectValue(at index: Int) {
-        guard let options = options,
-            options.count > index else {
-                return
-        }
-        value = options[index]
     }
 }
