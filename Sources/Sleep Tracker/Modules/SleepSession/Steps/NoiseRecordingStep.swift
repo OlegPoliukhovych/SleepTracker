@@ -9,20 +9,21 @@
 import Foundation
 import Combine
 
-final class NoiseRecordingStep: SessionStepBaseModel {
+final class NoiseRecordingStep: SessionStep {
 
-    override init() {
-        super.init()
+    var audioItem: AudioItem?
+    
+    init() {
         audioItem = AudioItem(mode: .record(destination: FileManager.default.recordingsFolderUrl))
     }
 
     // MARK: PlayerViewModelDataProvidable
 
-    override var style: PlayerViewControlsStyle {
+    var style: PlayerViewControlsStyle {
         .recording
     }
 
-    override var title: AnyPublisher<String, Never> {
+    var title: AnyPublisher<String, Never> {
         Just("noise recording")
             .eraseToAnyPublisher()
     }

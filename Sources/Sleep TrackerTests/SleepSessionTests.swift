@@ -14,39 +14,18 @@ final class SleepSessionTests: XCTestCase {
     var session: SleepSession!
 
     var steps: [SessionStep] {
-        [SessionStepModel(kind: .relaxingSound),
-         SessionStepModel(kind: .noiseRecording),
-         SessionStepModel(kind: .alarm)]
+        [RelaxingSoundStep(duration: 100),
+         NoiseRecordingStep(),
+         AlarmStep(date: Date())]
     }
 
     override func setUpWithError() throws {
         try super.setUpWithError()
-        session = try! SleepSession(steps: steps)
+        session = try SleepSession(steps: steps)
     }
 
     override func tearDownWithError() throws {
         session = nil
         try super.tearDownWithError()
     }
-
-    func testInitialStepIsEqualToFirstElementInProvidedSteps() throws {
-        let firstStep = steps.first!
-        let sessionFirstStep = session.currentStep
-        XCTAssertEqual(firstStep.kind, sessionFirstStep.kind, "Current step is not equal to provided one in steps array")
-    }
-
-    func testCurrentStepChange() throws {
-        let currentStep = session.currentStep
-        currentStep.skipStep()
-        let newStep = session.currentStep
-        XCTAssertNotEqual(currentStep.kind, newStep.kind, "Steps should be different")
-    }
-
-    func testSessionExitWhenStepsReachedOut() throws {
-        session.currentStep.skipStep() // Relaxing Sound to noiseRecording
-        session.currentStep.skipStep() // Noise Recording to Alarm
-        session.currentStep.skipStep() // Alarm not changed because it is last step so session should be terrminated
-        XCTAssert(!session.isRunning, "Session should be ended when alarm step calls 'next'")
-    }
-
 }

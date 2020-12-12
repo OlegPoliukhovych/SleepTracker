@@ -1,5 +1,5 @@
 //
-//  SleepSessionContainerView.swift
+//  SleepSessionView.swift
 //  Sleep Tracker
 //
 //  Created by Oleg Poliukhovych on 8/23/20.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct SleepSessionContainerView: View {
+struct SleepSessionView: View {
 
     @Binding var isRunning: Bool
     @ObservedObject var model: SleepSession
@@ -42,15 +42,18 @@ struct SleepSessionContainerView: View {
         }
         .padding()
         .onReceive(model.$isRunning) { self.isRunning = $0 }
+        .onAppear {
+            model.start()
+        }
     }
 }
 
-struct SleepSessionContainerView_Previews: PreviewProvider {
+struct SleepSessionView_Previews: PreviewProvider {
     static var previews: some View {
-        SleepSessionContainerView(isRunning: Binding<Bool>.constant(true),
+        SleepSessionView(isRunning: Binding<Bool>.constant(true),
                               model: try! SleepSession(steps: [
-                                  SessionStepBaseModel(),
-                                  SessionStepBaseModel()
+                                RelaxingSoundStep(duration: 300),
+                                AlarmStep(date: Date(timeInterval: 1500, since: Date()))
                               ])!)
     }
 }

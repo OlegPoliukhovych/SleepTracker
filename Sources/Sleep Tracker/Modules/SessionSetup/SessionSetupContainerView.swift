@@ -21,16 +21,17 @@ struct SessionSetupContainerView: View {
     }
 
     private func view() -> some View {
-        if isSessionRunning, let session = model.prepareSession() {
+        if isSessionRunning {
             return AnyView (
-                SleepSessionContainerView(isRunning: $isSessionRunning, model: session)
-                    .transition(.opacity)
-            )
-        } else {
-            return AnyView (
-                SessionSetupView(model: model, isSessionRunning: $isSessionRunning)
+                model.prepareSession().map { session in
+                    SleepSessionView(isRunning: $isSessionRunning, model: session)
+                        .transition(.opacity)
+                }
             )
         }
+        return AnyView (
+            SessionSetupView(model: model, isSessionRunning: $isSessionRunning)
+        )
     }
 }
 
@@ -54,7 +55,7 @@ struct SessionSetupView: View {
                                                     selected: $relaxingSoundExtended)
                         if relaxingSoundExtended {
                             OptionSelectionView(model: model.relaxing,
-                                                  selected: $relaxingSoundExtended)
+                                                selected: $relaxingSoundExtended)
                         }
                     }
                 }

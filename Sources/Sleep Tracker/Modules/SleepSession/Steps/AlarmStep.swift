@@ -9,23 +9,26 @@
 import Foundation
 import Combine
 
-final class AlarmStep: SessionStepBaseModel {
+final class AlarmStep: SessionStep {
 
+    var audioItem: AudioItem?
     private let date: Date
 
     init(date: Date) {
-        self.date = date
-        super.init()
-
         if let path = Bundle.main.path(forResource: "alarm.m4a", ofType: nil) {
             let url = URL(fileURLWithPath: path)
             self.audioItem = AudioItem(mode: .playback(fileUrl: url, startTime: date))
         } else {
             self.audioItem = nil
         }
+        self.date = date
     }
 
-    override var title: AnyPublisher<String, Never> {
+    var style: PlayerViewControlsStyle {
+        .none
+    }
+
+    var title: AnyPublisher<String, Never> {
         let formatter = DateFormatter()
         formatter.dateStyle = .none
         formatter.timeStyle = .short

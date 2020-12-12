@@ -15,6 +15,21 @@ protocol SessionStep: PlayerViewModelDataProvidable {
     func skipStep()
 }
 
+extension SessionStep {
+
+    var skip: AnyPublisher<Void, Never> {
+        audioItem?
+            .statePublisher
+            .filter { $0 == .stopped }
+            .compactMap { _ in return Void() }
+            .eraseToAnyPublisher() ?? Just(()).eraseToAnyPublisher()
+    }
+
+    func skipStep() {
+        audioItem?.change(state: .stopped)
+    }
+}
+
 extension PlayerViewModelDataProvidable where Self: SessionStep {
 
     var toggleRunning: () -> Void {

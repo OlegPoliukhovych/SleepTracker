@@ -9,14 +9,15 @@
 import Foundation
 import Combine
 
-final class RelaxingSoundStep: SessionStepBaseModel {
+final class RelaxingSoundStep: SessionStep {
 
+    var audioItem: AudioItem?
     private var timer: Cancellable?
     private var durationSubject: CurrentValueSubject<TimeInterval, Never>
+    private var cancellables = Set<AnyCancellable>()
 
     init(duration: TimeInterval) {
         durationSubject = .init(duration)
-        super.init()
 
         if let path = Bundle.main.path(forResource: "nature.m4a", ofType: nil) {
             let url = URL(fileURLWithPath: path)
@@ -60,11 +61,11 @@ final class RelaxingSoundStep: SessionStepBaseModel {
 
     // MARK: PlayerViewModelDataProvidable
 
-    override var style: PlayerViewControlsStyle {
+    var style: PlayerViewControlsStyle {
         .playback
     }
 
-    override var title: AnyPublisher<String, Never> {
+    var title: AnyPublisher<String, Never> {
         durationSubject
             .compactMap { DateComponentsFormatter.shortTimeString(timeIterval: $0) }
             .eraseToAnyPublisher()

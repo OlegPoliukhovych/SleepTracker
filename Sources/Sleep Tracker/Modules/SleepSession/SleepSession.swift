@@ -46,14 +46,6 @@ final class SleepSession: ObservableObject {
             .store(in: &cancellables)
 
         $currentStep
-            .compactMap { $0.audioItem }
-            .sink { [unowned self] audioItem in
-                self.audioProvider?.setAccent(audioItem: audioItem)
-                audioItem.change(state: .running)
-            }
-            .store(in: &cancellables)
-
-        $currentStep
             .sink { [unowned self] in self.currentStepViewModel = .init(dataProvider: $0) }
             .store(in: &cancellables)
 
@@ -70,6 +62,15 @@ final class SleepSession: ObservableObject {
                     self?.isAlarmFired = true
                 }
         }
+    }
+
+    func start() {
+        $currentStep
+            .compactMap { $0.audioItem }
+            .sink { [unowned self] audioItem in
+                self.audioProvider?.setAccent(audioItem: audioItem)
+            }
+            .store(in: &cancellables)
     }
 
     deinit {

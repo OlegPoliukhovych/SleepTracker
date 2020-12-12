@@ -66,6 +66,7 @@ final class AudioProvider {
     }
 
     func setAccent(audioItem: AudioItem) {
-        self.accentAudioItem = audioItem
+        accentAudioItem = audioItem
+        audioItem.change(state: .running)
     }
 }
