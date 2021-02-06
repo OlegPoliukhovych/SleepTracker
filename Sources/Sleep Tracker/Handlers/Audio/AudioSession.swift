@@ -19,17 +19,21 @@ extension AVAudioSession {
 
     func setup(audioItems: [AudioItem]) throws {
         do {
-            try setCategory(.playAndRecord, mode: .default, options: .defaultToSpeaker)
+            try setCategory(.playAndRecord, options: .defaultToSpeaker)
             try setActive(true)
         } catch {
             throw error
         }
 
-        if category == .playAndRecord, recordPermission == .undetermined {
+        if audioItems.contains(where: {
+            if case .record = $0.mode {
+                return true
+            }
+            return false
+        }), recordPermission == .undetermined {
             requestRecordPermission { _ in
                 // TODO: handle recording permission request result
             }
-
         }
 
         UIApplication.shared.beginReceivingRemoteControlEvents()

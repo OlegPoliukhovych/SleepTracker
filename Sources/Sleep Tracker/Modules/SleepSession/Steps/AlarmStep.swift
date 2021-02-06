@@ -13,6 +13,7 @@ final class AlarmStep: SessionStep {
 
     var audioItem: AudioItem?
     private let date: Date
+    let onAlarm: AnyPublisher<Void, Never>
 
     init(date: Date) {
         if let path = Bundle.main.path(forResource: "alarm.m4a", ofType: nil) {
@@ -22,6 +23,15 @@ final class AlarmStep: SessionStep {
             self.audioItem = nil
         }
         self.date = date
+
+        onAlarm = Timer.TimerPublisher(interval: date.timeIntervalSinceNow,
+                                       runLoop: .main,
+                                       mode: .default)
+            .autoconnect()
+            .share()
+            .first()
+            .flatMap { _ in Just(()) }
+            .eraseToAnyPublisher()
     }
 
     var style: PlayerViewControlsStyle {

@@ -9,6 +9,12 @@
 import Foundation
 import Combine
 
+enum SettingInfo {
+    case relaxing(TimeInterval)
+    case recording(timeout: Date?)
+    case alarm(Date)
+}
+
 final class SessionSetup: ObservableObject {
 
     var relaxing: ValueSetting<TimeInterval>
@@ -76,18 +82,18 @@ final class SessionSetup: ObservableObject {
 
     func prepareSession() -> SleepSession? {
 
-        var steps = [SessionStep]()
+        var steps = [SettingInfo]()
         if relaxing.enabled {
-            steps.append(RelaxingSoundStep(duration: relaxing.value))
+            steps.append(.relaxing(relaxing.value))
         }
         if noiseTracking.enabled {
-            steps.append(NoiseRecordingStep())
+            steps.append(.recording(timeout: alarm.enabled ? nil : Calendar.current.nearestDate(matchingHour: 7, minute: 0)))
         }
         if alarm.enabled {
-            steps.append(AlarmStep(date: Calendar.current.nearestDate(to: self.alarm.value, matching: [.hour, .minute])))
+            steps.append(.alarm(Calendar.current.nearestDate(to: alarm.value, matching: [.hour, .minute])))
         }
         guard !steps.isEmpty,
-            let session = try? SleepSession(steps: steps) else {
+            let session = try? SleepSession(stepsInfo: steps) else {
             return nil
         }
         return session

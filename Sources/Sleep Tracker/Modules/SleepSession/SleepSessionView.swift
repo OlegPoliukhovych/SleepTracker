@@ -12,36 +12,50 @@ struct SleepSessionView: View {
 
     @Binding var isRunning: Bool
     @ObservedObject var model: SleepSession
+    @State private var exitAlertEnabled = false
 
     var body: some View {
         VStack {
-            if self.model.isAlarmFired {
-                AlarmFiredView(shouldClose: self.$isRunning)
+            if model.isAlarmFired {
+                AlarmFiredView(shouldClose: $isRunning)
             } else {
                 HStack() {
                     Spacer()
                     Button(action: {
-                        withAnimation {
-                            self.isRunning.toggle()
-                        }
+                        exitAlertEnabled.toggle()
                     }) {
                         Image(systemName: "xmark")
                     }
+                    .alert(isPresented: $exitAlertEnabled) {
+                        Alert(title: Text("Are you sure you want to leave session?"),
+                              primaryButton: .cancel(Text("No")),
+                              secondaryButton: .default(Text("Yes"),
+                                                        action: {
+                                                            withAnimation {
+                                                                self.model.cancel()
+                                                            }
+                                                        })
+                        )
+                    }
                     .accentColor(Color.text)
                     .padding()
+
                 }
                 Spacer()
                 GeometryReader { geometry in
                     VStack {
-                        PlayerView(model: self.model.currentStepViewModel)
-                            .frame(height: geometry.size.height * 0.75)
+                        AnyView(
+                            self.model.currentStepViewModel.map {
+                                PlayerView(model: $0)
+                                    .frame(height: geometry.size.height * 0.75)
+                            })
                     }
                 }
                 Spacer()
             }
         }
         .padding()
-        .onReceive(model.$isRunning) { self.isRunning = $0 }
+        .onReceive(model.$isRunning.dropFirst(), perform: { self.isRunning = $0 })
         .onAppear {
             model.start()
         }
@@ -51,9 +65,8 @@ struct SleepSessionView: View {
 struct SleepSessionView_Previews: PreviewProvider {
     static var previews: some View {
         SleepSessionView(isRunning: Binding<Bool>.constant(true),
-                              model: try! SleepSession(steps: [
-                                RelaxingSoundStep(duration: 300),
-                                AlarmStep(date: Date(timeInterval: 1500, since: Date()))
-                              ])!)
+                         model: try! SleepSession(stepsInfo: [.relaxing(300),
+                                                              .recording(timeout: nil),
+                                                              .alarm(Date())])!)
     }
 }

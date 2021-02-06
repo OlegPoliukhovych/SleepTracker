@@ -11,8 +11,6 @@ import Combine
 
 protocol SessionStep: PlayerViewModelDataProvidable {
     var audioItem: AudioItem? { get }
-    var skip: AnyPublisher<Void, Never> { get }
-    func skipStep()
 }
 
 extension SessionStep {
