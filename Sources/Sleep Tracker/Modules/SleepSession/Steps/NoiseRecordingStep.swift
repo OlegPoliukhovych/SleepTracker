@@ -12,7 +12,6 @@ import Combine
 final class NoiseRecordingStep: SessionStep {
 
     var audioItem: AudioItem?
-    private var timer: Cancellable?
     private var cancellables = Set<AnyCancellable>()
 
     init(recordingUrl: URL, timeout: Date?) {
@@ -24,7 +23,7 @@ final class NoiseRecordingStep: SessionStep {
         }
 
         // setup timer on actual recording start
-        timer = audioItem?.statePublisher
+        let timer = audioItem?.statePublisher
             .filter { $0 == .running }
             .map { _ in date.timeIntervalSinceNow }
             .flatMap { Timer.TimerPublisher(interval: $0, runLoop: .current, mode: .default).autoconnect() }
@@ -37,7 +36,7 @@ final class NoiseRecordingStep: SessionStep {
         // cancel timer if step was skipped
         audioItem?.statePublisher
             .filter { $0 == .stopped }
-            .sink { [weak self] _ in self?.timer?.cancel() }
+            .sink { _ in timer?.cancel() }
             .store(in: &cancellables)
     }
 
