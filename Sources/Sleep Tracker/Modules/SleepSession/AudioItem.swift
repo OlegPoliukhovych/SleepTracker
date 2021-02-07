@@ -12,7 +12,7 @@ import Combine
 struct AudioItem {
 
     enum Mode {
-        case playback(fileUrl: URL, startTime: Date?)
+        case playback(fileUrl: URL)
         case record(destination: URL)
     }
 

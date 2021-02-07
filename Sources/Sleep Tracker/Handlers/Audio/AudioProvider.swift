@@ -42,9 +42,9 @@ final class AudioProvider {
         audioItems.forEach { audioItem in
             let itemHandler: AudioItemHandler?
             switch audioItem.mode {
-            case let .playback(fileUrl: url, startTime: date):
-                itemHandler = try? AVAudioPlayer(soundUrl: url, startTime: date)
-            case .record(destination: let destination):
+            case let .playback(fileUrl: url):
+                itemHandler = try? AVAudioPlayer(contentsOf: url)
+            case let .record(destination: destination):
                 itemHandler = AudioItemRecorder(destination: destination)
             }
 

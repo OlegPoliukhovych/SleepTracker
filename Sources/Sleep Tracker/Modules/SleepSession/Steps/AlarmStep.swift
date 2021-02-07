@@ -18,7 +18,7 @@ final class AlarmStep: SessionStep {
     init(date: Date) {
         if let path = Bundle.main.path(forResource: "alarm.m4a", ofType: nil) {
             let url = URL(fileURLWithPath: path)
-            self.audioItem = AudioItem(mode: .playback(fileUrl: url, startTime: date))
+            self.audioItem = AudioItem(mode: .playback(fileUrl: url))
         } else {
             self.audioItem = nil
         }

@@ -21,7 +21,7 @@ final class RelaxingSoundStep: SessionStep {
 
         if let path = Bundle.main.path(forResource: "nature.m4a", ofType: nil) {
             let url = URL(fileURLWithPath: path)
-            audioItem = AudioItem(mode: .playback(fileUrl: url, startTime: nil))
+            audioItem = AudioItem(mode: .playback(fileUrl: url))
         } else {
             audioItem = nil
         }
