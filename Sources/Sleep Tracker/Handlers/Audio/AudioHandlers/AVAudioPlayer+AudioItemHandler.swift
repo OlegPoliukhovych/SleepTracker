@@ -10,6 +10,16 @@ import AVFoundation
 
 extension AVAudioPlayer: AudioItemHandler {
 
+    convenience init(soundUrl: URL, startTime: Date?) throws {
+        try self.init(contentsOf: soundUrl)
+
+        guard let startDate = startTime else {
+            return
+        }
+        play(atTime: deviceCurrentTime + startDate.timeIntervalSinceNow)
+    }
+
+
     func prepare() {
         numberOfLoops = -1
     }
