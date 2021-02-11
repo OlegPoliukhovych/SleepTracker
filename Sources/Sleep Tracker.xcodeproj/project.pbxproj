@@ -40,7 +40,6 @@
 		85C9EE5524D74E1B0090C222 /* Color+Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C9EE5424D74E1B0090C222 /* Color+Palette.swift */; };
 		85C9EE5924D817D30090C222 /* SessionSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C9EE5824D817D30090C222 /* SessionSetup.swift */; };
 		85E964382502787900400B61 /* AudioItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E964372502787900400B61 /* AudioItem.swift */; };
-		85EBBF122585538B006C722E /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EBBF112585538B006C722E /* DashboardView.swift */; };
 		85F50A5C24EF1D7E0032EEF0 /* SessionSetupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F50A5B24EF1D7E0032EEF0 /* SessionSetupTests.swift */; };
 		85F50A5E24F1C4880032EEF0 /* SleepSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F50A5D24F1C4880032EEF0 /* SleepSessionView.swift */; };
 		85FC3438250656B200D72F29 /* AudioProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FC3437250656B200D72F29 /* AudioProvider.swift */; };
@@ -96,7 +95,6 @@
 		85C9EE5424D74E1B0090C222 /* Color+Palette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Palette.swift"; sourceTree = "<group>"; };
 		85C9EE5824D817D30090C222 /* SessionSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionSetup.swift; sourceTree = "<group>"; };
 		85E964372502787900400B61 /* AudioItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioItem.swift; sourceTree = "<group>"; };
-		85EBBF112585538B006C722E /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		85F50A5B24EF1D7E0032EEF0 /* SessionSetupTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionSetupTests.swift; sourceTree = "<group>"; };
 		85F50A5D24F1C4880032EEF0 /* SleepSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepSessionView.swift; sourceTree = "<group>"; };
 		85FC3437250656B200D72F29 /* AudioProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioProvider.swift; sourceTree = "<group>"; };
@@ -238,14 +236,6 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		85EBBF1025855362006C722E /* Dashboard */ = {
-			isa = PBXGroup;
-			children = (
-				85EBBF112585538B006C722E /* DashboardView.swift */,
-			);
-			path = Dashboard;
-			sourceTree = "<group>";
-		};
 		85FC343925078E2500D72F29 /* Audio */ = {
 			isa = PBXGroup;
 			children = (
@@ -259,7 +249,6 @@
 		85FE3978252E1C51000AF906 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				85EBBF1025855362006C722E /* Dashboard */,
 				85FE3979252E1C59000AF906 /* SessionSetup */,
 				85FE397A252E1CD2000AF906 /* SleepSession */,
 			);
@@ -429,7 +418,6 @@
 				85C3AB4C2513BDC6008FE926 /* FileManager+Extensions.swift in Sources */,
 				859AE6E624FC08700083D248 /* AudioSession.swift in Sources */,
 				859E112C2523351500CAA2BF /* AlarmFiredView.swift in Sources */,
-				85EBBF122585538B006C722E /* DashboardView.swift in Sources */,
 				85E964382502787900400B61 /* AudioItem.swift in Sources */,
 				858FBA6F24CCB43800B38B65 /* SessionSetupContainerView.swift in Sources */,
 				8599F3E9251E3CE7008EC688 /* UserNotificationCenter.swift in Sources */,

@@ -75,8 +75,11 @@ final class SleepSession: ObservableObject {
             .store(in: &cancellables)
 
         // Mark that alarm is fired so view can draw the alarm view
-        steps
-            .first(as: AlarmStep.self)?
+        guard let alarmStep = steps.first(as: AlarmStep.self) else {
+            return
+        }
+
+        alarmStep
             .onAlarm
             .sink { [unowned self] _ in self.isAlarmFired = true }
             .store(in: &cancellables)
@@ -87,6 +90,14 @@ final class SleepSession: ObservableObject {
             .compactMap { $0.1 }
             .receive(on: DispatchQueue.main)
             .sink { $0.skipStep() }
+            .store(in: &cancellables)
+
+        UserNotificationCenter.shared.setAlarmNotification(date: alarmStep.fireDate)
+
+        $isRunning
+            .dropFirst()
+            .filter { !$0 }
+            .sink { _ in UserNotificationCenter.shared.cancelAlarmNotification() }
             .store(in: &cancellables)
     }
 

@@ -67,4 +67,8 @@ final class UserNotificationCenter: NotificationCenterProvider {
 
         UNUserNotificationCenter.current().add(request)
     }
+
+    func cancelAlarmNotification() {
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [alarmIdentifier])
+    }
 }

@@ -12,7 +12,7 @@ import Combine
 final class AlarmStep: SessionStep {
 
     var audioItem: AudioItem?
-    private let date: Date
+    let fireDate: Date
     let onAlarm: AnyPublisher<Void, Never>
 
     init(date: Date) {
@@ -22,7 +22,7 @@ final class AlarmStep: SessionStep {
         } else {
             self.audioItem = nil
         }
-        self.date = date
+        self.fireDate = date
 
         onAlarm = Timer.TimerPublisher(interval: date.timeIntervalSinceNow,
                                        runLoop: .main,
@@ -43,6 +43,6 @@ final class AlarmStep: SessionStep {
         formatter.dateStyle = .none
         formatter.timeStyle = .short
 
-        return Just("Alarm at \(formatter.string(from: date))").eraseToAnyPublisher()
+        return Just("Alarm at \(formatter.string(from: fireDate))").eraseToAnyPublisher()
     }
 }

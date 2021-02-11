@@ -19,5 +19,7 @@ protocol NotificationCenterProvider {
 
     /// Sets alarm local notification
     func setAlarmNotification(date: Date)
+
+    func cancelAlarmNotification()
     
 }
