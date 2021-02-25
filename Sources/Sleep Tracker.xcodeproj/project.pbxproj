@@ -14,6 +14,10 @@
 		8518C398250A2532004838F4 /* AudioItemRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8518C397250A2532004838F4 /* AudioItemRecorder.swift */; };
 		85344AA724F3C553001DE99A /* SleepSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85344AA624F3C553001DE99A /* SleepSession.swift */; };
 		8545B7BE251C900000E41C0D /* Calendar+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8545B7BD251C900000E41C0D /* Calendar+Extensions.swift */; };
+		855022C925D699C20010A5E6 /* StorageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855022C825D699C20010A5E6 /* StorageProvider.swift */; };
+		855022CF25D94C960010A5E6 /* SessionRecordingsInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855022CE25D94C960010A5E6 /* SessionRecordingsInfo.swift */; };
+		8552846B25E292F900804097 /* FileManagerStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8552846A25E292F900804097 /* FileManagerStorage.swift */; };
+		8552847125E297ED00804097 /* FileManagerStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8552847025E297ED00804097 /* FileManagerStorageTests.swift */; };
 		855D759C250FAA9300244F30 /* DateComponentsFormatter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855D759B250FAA9300244F30 /* DateComponentsFormatter+Extensions.swift */; };
 		855D759F2510C22100244F30 /* SessionStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855D759E2510C22100244F30 /* SessionStep.swift */; };
 		858FBA6B24CCB43800B38B65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858FBA6A24CCB43800B38B65 /* AppDelegate.swift */; };
@@ -36,7 +40,6 @@
 		85B1309224F68A64003A4C8E /* SleepSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B1309124F68A64003A4C8E /* SleepSessionTests.swift */; };
 		85B1309624F6B94D003A4C8E /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B1309524F6B94D003A4C8E /* PlayerView.swift */; };
 		85B1313725CEC18900172F53 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B1313625CEC18900172F53 /* Array+Extensions.swift */; };
-		85C3AB4C2513BDC6008FE926 /* FileManager+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C3AB4B2513BDC6008FE926 /* FileManager+Extensions.swift */; };
 		85C9EE5524D74E1B0090C222 /* Color+Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C9EE5424D74E1B0090C222 /* Color+Palette.swift */; };
 		85C9EE5924D817D30090C222 /* SessionSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C9EE5824D817D30090C222 /* SessionSetup.swift */; };
 		85E964382502787900400B61 /* AudioItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E964372502787900400B61 /* AudioItem.swift */; };
@@ -65,6 +68,10 @@
 		8518C397250A2532004838F4 /* AudioItemRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioItemRecorder.swift; sourceTree = "<group>"; };
 		85344AA624F3C553001DE99A /* SleepSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepSession.swift; sourceTree = "<group>"; };
 		8545B7BD251C900000E41C0D /* Calendar+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+Extensions.swift"; sourceTree = "<group>"; };
+		855022C825D699C20010A5E6 /* StorageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageProvider.swift; sourceTree = "<group>"; };
+		855022CE25D94C960010A5E6 /* SessionRecordingsInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionRecordingsInfo.swift; sourceTree = "<group>"; };
+		8552846A25E292F900804097 /* FileManagerStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerStorage.swift; sourceTree = "<group>"; };
+		8552847025E297ED00804097 /* FileManagerStorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerStorageTests.swift; sourceTree = "<group>"; };
 		855D759B250FAA9300244F30 /* DateComponentsFormatter+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateComponentsFormatter+Extensions.swift"; sourceTree = "<group>"; };
 		855D759E2510C22100244F30 /* SessionStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStep.swift; sourceTree = "<group>"; };
 		858FBA6724CCB43800B38B65 /* Sleep Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sleep Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,7 +98,6 @@
 		85B1309124F68A64003A4C8E /* SleepSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepSessionTests.swift; sourceTree = "<group>"; };
 		85B1309524F6B94D003A4C8E /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		85B1313625CEC18900172F53 /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
-		85C3AB4B2513BDC6008FE926 /* FileManager+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extensions.swift"; sourceTree = "<group>"; };
 		85C9EE5424D74E1B0090C222 /* Color+Palette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Palette.swift"; sourceTree = "<group>"; };
 		85C9EE5824D817D30090C222 /* SessionSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionSetup.swift; sourceTree = "<group>"; };
 		85E964372502787900400B61 /* AudioItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioItem.swift; sourceTree = "<group>"; };
@@ -140,12 +146,20 @@
 			path = AudioHandlers;
 			sourceTree = "<group>";
 		};
+		855022C725D699700010A5E6 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				855022C825D699C20010A5E6 /* StorageProvider.swift */,
+				8552846A25E292F900804097 /* FileManagerStorage.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
 		855D759A250FAA7900244F30 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
 				85C9EE5424D74E1B0090C222 /* Color+Palette.swift */,
 				855D759B250FAA9300244F30 /* DateComponentsFormatter+Extensions.swift */,
-				85C3AB4B2513BDC6008FE926 /* FileManager+Extensions.swift */,
 				8545B7BD251C900000E41C0D /* Calendar+Extensions.swift */,
 				8517F163253101890035DBE9 /* DateFormatter+Extensions.swift */,
 				85B1313625CEC18900172F53 /* Array+Extensions.swift */,
@@ -214,6 +228,7 @@
 				858FBA8324CCB43A00B38B65 /* Info.plist */,
 				85F50A5B24EF1D7E0032EEF0 /* SessionSetupTests.swift */,
 				85B1309124F68A64003A4C8E /* SleepSessionTests.swift */,
+				8552847025E297ED00804097 /* FileManagerStorageTests.swift */,
 			);
 			path = "Sleep TrackerTests";
 			sourceTree = "<group>";
@@ -221,6 +236,7 @@
 		859AE6E424FBCFAB0083D248 /* Handlers */ = {
 			isa = PBXGroup;
 			children = (
+				855022C725D699700010A5E6 /* Storage */,
 				8517F139252E24080035DBE9 /* Notifications */,
 				85FC343925078E2500D72F29 /* Audio */,
 			);
@@ -275,6 +291,7 @@
 				85B1309524F6B94D003A4C8E /* PlayerView.swift */,
 				85901ADB25116BB400C4E409 /* PlayerViewModel.swift */,
 				859E112B2523351500CAA2BF /* AlarmFiredView.swift */,
+				855022CE25D94C960010A5E6 /* SessionRecordingsInfo.swift */,
 			);
 			path = SleepSession;
 			sourceTree = "<group>";
@@ -398,6 +415,7 @@
 				8518C394250A24D6004838F4 /* AudioItemHandler.swift in Sources */,
 				8518C396250A24F0004838F4 /* AVAudioPlayer+AudioItemHandler.swift in Sources */,
 				859AE6E324FBCAA60083D248 /* RelaxingSoundStep.swift in Sources */,
+				855022CF25D94C960010A5E6 /* SessionRecordingsInfo.swift in Sources */,
 				85FE3982252E1F19000AF906 /* ContainerView.swift in Sources */,
 				855D759C250FAA9300244F30 /* DateComponentsFormatter+Extensions.swift in Sources */,
 				85B1309624F6B94D003A4C8E /* PlayerView.swift in Sources */,
@@ -407,6 +425,7 @@
 				85901ADC25116BB400C4E409 /* PlayerViewModel.swift in Sources */,
 				85C9EE5924D817D30090C222 /* SessionSetup.swift in Sources */,
 				85901AE02512287D00C4E409 /* AlarmStep.swift in Sources */,
+				855022C925D699C20010A5E6 /* StorageProvider.swift in Sources */,
 				8599F3E5251E3C54008EC688 /* NotificationCenterProvider.swift in Sources */,
 				85344AA724F3C553001DE99A /* SleepSession.swift in Sources */,
 				85FE3988252E202A000AF906 /* SquaredButtonStyle.swift in Sources */,
@@ -414,8 +433,8 @@
 				8518C398250A2532004838F4 /* AudioItemRecorder.swift in Sources */,
 				8517F16025306E5D0035DBE9 /* SessionSetting.swift in Sources */,
 				8545B7BE251C900000E41C0D /* Calendar+Extensions.swift in Sources */,
+				8552846B25E292F900804097 /* FileManagerStorage.swift in Sources */,
 				85901ADE2511749200C4E409 /* NoiseRecordingStep.swift in Sources */,
-				85C3AB4C2513BDC6008FE926 /* FileManager+Extensions.swift in Sources */,
 				859AE6E624FC08700083D248 /* AudioSession.swift in Sources */,
 				859E112C2523351500CAA2BF /* AlarmFiredView.swift in Sources */,
 				85E964382502787900400B61 /* AudioItem.swift in Sources */,
@@ -431,6 +450,7 @@
 			files = (
 				85B1309224F68A64003A4C8E /* SleepSessionTests.swift in Sources */,
 				85F50A5C24EF1D7E0032EEF0 /* SessionSetupTests.swift in Sources */,
+				8552847125E297ED00804097 /* FileManagerStorageTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,6 +12,15 @@ import Combine
 final class NoiseRecordingStep: SessionStep {
 
     var audioItem: AudioItem?
+    var onStart: AnyPublisher<Date, Never> {
+        audioItem?
+            .statePublisher
+            .filter { $0 == .running }
+            .first()
+            .flatMap { _ in Just(Date()) }
+            .eraseToAnyPublisher() ?? Empty().eraseToAnyPublisher()
+    }
+
     private var cancellables = Set<AnyCancellable>()
 
     init(recordingUrl: URL, timeout: Date?) {

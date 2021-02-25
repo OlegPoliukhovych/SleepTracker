@@ -15,26 +15,28 @@ final class SleepSession: ObservableObject {
     @Published private(set) var currentStepViewModel: PlayerViewModel!
     @Published private(set) var isRunning: Bool = false
     @Published private(set) var isAlarmFired: Bool = false
-
+    private var recordingsInfo: SessionRecordingsInfo
+    private let storageProvider: StorageProvider
     private var cancellables = Set<AnyCancellable>()
 
-    init?(stepsInfo: [SettingInfo]) throws {
+    init?(stepsInfo: [SettingInfo], storageProvider: StorageProvider = FileManagerStorage()) throws {
 
-        // TODO:
-        // Create session information object fullfilled with session data and store in file system for further displaying statistics in dashboard
+        let sessionInfo = SessionRecordingsInfo(storagePathProvider: storageProvider.recordingsStorageURL(for:))
         let steps = stepsInfo.map { element -> SessionStep in
             switch element {
             case .relaxing(let timeInterval):
                 return RelaxingSoundStep(duration: timeInterval)
             case .recording(timeout: let timeout):
-                return NoiseRecordingStep(recordingUrl: FileManager.default.recordingsFolderUrl,
+                return NoiseRecordingStep(recordingUrl: sessionInfo.recordingsPath,
                                           timeout: timeout)
             case .alarm(let date):
                 return AlarmStep(date: date)
             }
         }
 
+        self.storageProvider = storageProvider
         audioProvider = try? AudioProvider(audioItems: steps.compactMap { $0.audioItem })
+        self.recordingsInfo = sessionInfo
         setup(steps: steps)
     }
 
@@ -74,6 +76,25 @@ final class SleepSession: ObservableObject {
             .sink { [unowned self] in self.audioProvider?.setAccent(audioItem: $0)}
             .store(in: &cancellables)
 
+        // get start date when recording starts
+        steps
+            .first(as: NoiseRecordingStep.self)?
+            .onStart
+            .sink { [unowned self] in self.recordingsInfo.set(start: $0) }
+            .store(in: &cancellables)
+
+        // set finish date when recording step finishes
+        // TODO: combine with `applicationWillTerminate(_:)` notification so finish date will be set either on step finish or app termination
+        steps
+            .first(as: NoiseRecordingStep.self)?
+            .skip
+            .map { _ in Date() }
+            .sink { [unowned self] in
+                self.recordingsInfo.set(finish: $0)
+                self.storageProvider.save(self.recordingsInfo)
+            }
+            .store(in: &cancellables)
+
         // Mark that alarm is fired so view can draw the alarm view
         guard let alarmStep = steps.first(as: AlarmStep.self) else {
             return
@@ -106,7 +127,7 @@ final class SleepSession: ObservableObject {
     }
 
     func cancel() {
-        // TODO: Clean session info
+        storageProvider.delete(recordingsInfo)
         isRunning = false
     }
 }

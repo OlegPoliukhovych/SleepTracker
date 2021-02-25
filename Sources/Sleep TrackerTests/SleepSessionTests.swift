@@ -13,19 +13,19 @@ final class SleepSessionTests: XCTestCase {
 
     var session: SleepSession!
 
-    var steps: [SessionStep] {
-        [RelaxingSoundStep(duration: 100),
-         NoiseRecordingStep(),
-         AlarmStep(date: Date())]
-    }
-
-    override func setUpWithError() throws {
-        try super.setUpWithError()
-        session = try SleepSession(steps: steps)
-    }
-
-    override func tearDownWithError() throws {
-        session = nil
-        try super.tearDownWithError()
-    }
+//    var steps: [SessionStep] {
+//        [RelaxingSoundStep(duration: 100),
+//         NoiseRecordingStep(),
+//         AlarmStep(date: Date())]
+//    }
+//
+//    override func setUpWithError() throws {
+//        try super.setUpWithError()
+//        session = try SleepSession(steps: steps)
+//    }
+//
+//    override func tearDownWithError() throws {
+//        session = nil
+//        try super.tearDownWithError()
+//    }
 }
