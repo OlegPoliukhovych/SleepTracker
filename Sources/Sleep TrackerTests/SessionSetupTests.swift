@@ -54,7 +54,9 @@ final class SessionSetupTests: XCTestCase {
     }
 
     func testAlarmValueDescription() {
-        XCTAssertEqual(session.alarm.valueDescription, "7:00 AM", "relaxing sound value description incorrect")
+        XCTAssertEqual(session.alarm.valueDescription,
+                       DateFormatter.shortTime(from: Calendar.current.nearestDate(matchingHour: 7, minute: 0)),
+                       "relaxing sound value description incorrect")
     }
 
     func testSessionIsReadyToStartIfAllOptionsAreEnabled() {
